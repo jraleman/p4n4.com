@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P4N4 :: Platform for Nexus Neural Network Nodes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./public/styles.css">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">P4N4</div>
+                <nav class="nav">
+                    <a href="#architecture" class="nav-link">Architecture</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#docs" class="nav-link">Docs</a>
+                    <a href="#github" class="nav-link">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-tag">Edge AI Infrastructure</div>
+                <h1 class="hero-title">Platform for Nexus Neural Network Nodes</h1>
+                <p class="hero-subtitle">
+                    Bootstrap complete edge AI systems in minutes. Unified platform combining MING stack, Edge Impulse, and Gen AI layer for IoT engineers building distributed intelligence.
+                </p>
+                <div class="cta-group">
+                    <a href="#" class="btn btn-primary">Get Started →</a>
+                    <a href="#architecture" class="btn btn-secondary">View Architecture</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept Section -->
+        <section id="concept">
+            <div class="container">
+                <div class="section-tag">Concept</div>
+                <h2 class="section-title">Nexus Neural Network Nodes (N4)</h2>
+                <p class="section-description">
+                    A distributed edge intelligence architecture where each node runs on-device ML inference while participating in a coordinated mesh network. Data flows from devices through orchestration layers to storage and visualization, with AI agents providing automation and natural language interfaces.
+                </p>
+                <!-- <div class="concept-grid">
+                    <div class="concept-card">
+                        <div class="concept-icon">🔗</div>
+                        <h3>Distributed Edge</h3>
+                        <p>Deploy ML models directly to edge nodes. Process data locally, reduce latency, maintain privacy. Scale horizontally across hundreds of devices.</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-icon">⚡</div>
+                        <h3>Real-time Pipeline</h3>
+                        <p>MQTT messaging and Node-RED orchestration create low-latency data flows. InfluxDB stores time-series data for historical analysis and Grafana dashboards.</p>
+                    </div>
+                    <div class="concept-card">
+                        <div class="concept-icon">🤖</div>
+                        <h3>AI Automation</h3>
+                        <p>Gen AI layer with n8n workflows, Letta agent memory, and local LLMs via Ollama. Build intelligent automation without external API dependencies.</p>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Developer Experience Section -->
+        <section id="developer">
+            <div class="container">
+                <div class="section-tag">For Developers</div>
+                <h2 class="section-title">Rapid Deployment</h2>
+                <div class="dx-grid">
+                    <div class="dx-card">
+                        <h3>Quick Start</h3>
+                        <div class="code-block">
+                            <pre><code>
+git clone git@github.com:raisga/p4n4-docker.git
+cd p4n4-docker
+docker compose up -d
+
+# Services ready:
+# MQTT: localhost:1883
+# Node-RED: localhost:1880
+# InfluxDB: localhost:8086
+# Grafana: localhost:3000
+# n8n: localhost:5678
+# Ollama: localhost:11434</code></pre>
+                        </div>
+                    </div>
+                    <div class="dx-card">
+                        <h3>Architecture Benefits</h3>
+                        <ul class="dx-list">
+                            <li>Containerized services with Docker Compose</li>
+                            <li>Pre-configured networking and authentication</li>
+                            <li>Persistent volumes for data retention</li>
+                            <li>Environment variable configuration</li>
+                            <li>Extensible service definitions</li>
+                            <li>Production-grade logging and monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source Section -->
+        <section id="opensource">
+            <div class="container">
+                <div class="opensource-banner">
+                    <h3>Open Source Infrastructure</h3>
+                    <p>
+                        P4N4 is built on open-source foundations. Community-driven development, transparent roadmap, MIT licensed. Contributions welcome.
+                    </p>
+                    <div class="cta-group" style="justify-content: center;">
+                        <a href="#" class="btn btn-primary">View on GitHub →</a>
+                        <a href="#" class="btn btn-secondary">Join Community</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Architecture Section -->
+        <section id="architecture">
+            <div class="container">
+                <div class="section-tag">Architecture</div>
+                <h2 class="section-title">System Design</h2>
+                <p class="section-description">
+                    Three-layer architecture: device connectivity, data orchestration, and AI automation. Each component is containerized and can be deployed independently or as a complete stack.
+                </p>
+                <div class="architecture-flow">
+                    <div class="flow-layer">
+                        <div class="flow-label">Device Layer</div>
+                        <div class="flow-boxes">
+                            <div class="flow-box">IoT Sensors</div>
+                            <div class="flow-box">Edge Devices</div>
+                            <div class="flow-box">Robotics Nodes</div>
+                            <div class="flow-box">Industrial Equipment</div>
+                        </div>
+                    </div>
+
+                   <div class="flow-arrow">↓</div>
+                    
+                    <div class="flow-layer">
+                        <div class="flow-label">Edge AI</div>
+                        <div class="flow-boxes">
+                            <div class="flow-box">Edge Impulse (ML Models)</div>
+                            <div class="flow-box">On-device Inference</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">↓</div>
+                    
+                    <div class="flow-layer">
+                        <div class="flow-label">MING Stack</div>
+                        <div class="flow-boxes">
+                            <div class="flow-box">MQTT (Messaging)</div>
+                            <div class="flow-box">InfluxDB (Storage)</div>
+                            <div class="flow-box">Node-RED (Orchestration)</div>
+                            <div class="flow-box">Grafana (Visualization)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">⇕</div>
+                    
+                    <div class="flow-layer">
+                        <div class="flow-label">Gen AI Layer</div>
+                        <div class="flow-boxes">
+                            <div class="flow-box">n8n (Workflows)</div>
+                            <div class="flow-box">Letta (Agent Memory)</div>
+                            <div class="flow-box">Ollama (Local LLM)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container">
+                <div class="section-tag">Features</div>
+                <h2 class="section-title">Built for Edge AI Development</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-number">01</div>
+                        <h3>Unified Bootstrap</h3>
+                        <p>Single Docker Compose deployment. All services pre-configured and networked. Start building in minutes, not days.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">02</div>
+                        <h3>Edge-Native Pipelines</h3>
+                        <p>Purpose-built for edge AI workflows. Device messaging, data orchestration, ML inference, and monitoring in one stack.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">03</div>
+                        <h3>Local-First AI</h3>
+                        <p>Run LLMs locally with Ollama. No external API calls. Complete data sovereignty and offline capability.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">04</div>
+                        <h3>Modular Stack</h3>
+                        <p>Use what you need. Each component can be deployed independently or as part of the complete platform.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">05</div>
+                        <h3>Developer-First</h3>
+                        <p>Built by engineers, for engineers. Clear APIs, comprehensive docs, and extensible architecture.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">06</div>
+                        <h3>Production Ready</h3>
+                        <p>Battle-tested components. Industry-standard protocols. Scales from prototype to production.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section id="use-cases">
+            <div class="container">
+                <div class="section-tag">Applications</div>
+                <h2 class="section-title">Built For Real-World Systems</h2>
+                <div class="use-cases-list">
+                    <div class="use-case">
+                        <h3>Smart Sensors</h3>
+                        <p>Deploy ML-powered sensor networks. Process environmental data, detect anomalies, trigger automated responses.</p>
+                    </div>
+                    <!-- <div class="use-case">
+                        <h3>Robotics</h3>
+                        <p>Control fleets of autonomous robots. Coordinate behavior, share learned experiences, provide natural language interfaces.</p>
+                    </div> -->
+                    <!-- <div class="use-case">
+                        <h3>Industrial Monitoring</h3>
+                        <p>Track equipment health in real-time. Predict failures, optimize maintenance schedules, reduce downtime.</p>
+                    </div> -->
+                    <!-- <div class="use-case">
+                        <h3>Home Automation</h3>
+                        <p>Build intelligent home systems. Pattern recognition, predictive automation, voice control—all running locally.</p>
+                    </div> -->
+                    <div class="use-case">
+                        <h3>Warehouse Safety</h3>
+                        <p>Real-time edge AI monitoring system for warehouse safety compliance and loss prevention.</p>
+                    </div>
+                    <!-- <div class="use-case">
+                        <h3>Agricultural IoT</h3>
+                        <p>Monitor crop conditions, optimize irrigation, automate greenhouse controls with edge ML inference.</p>
+                    </div> -->
+                    <div class="use-case">
+                        <h3>AI-Controlled Systems</h3>
+                        <p>Let agents make decisions about physical systems. Natural language queries over sensor data and device control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Quick Start</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Contribute</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Use Cases</a></li>
+                        <li><a href="#">Architecture Guide</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">License</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>P4N4 — Platform for Nexus Neural Network Nodes. Built for edge AI engineers.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
