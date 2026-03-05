@@ -1,309 +1,695 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P4N4 :: Platform for Nexus Neural Network Nodes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./public/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>p4n4 — IoT + GenAI + Edge ML Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./public/styles.css">
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-gradient"></div>
 
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">P4N4</div>
-                <nav class="nav">
-                    <a href="#architecture" class="nav-link">Architecture</a>
-                    <a href="#features" class="nav-link">Features</a>
-                    <a href="#docs" class="nav-link">Docs</a>
-                    <a href="#github" class="nav-link">GitHub</a>
-                </nav>
-            </div>
+<div class="scanline-overlay"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">p4n4<span>.com</span></a>
+  <ul class="nav-links">
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#cli">CLI</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#edge-ai">Edge AI</a></li>
+    <li><a href="#docs">Docs</a></li>
+  </ul>
+  <a href="#install" class="nav-cta">$ pip install p4n4</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">v0.2 — open source platform</div>
+      <h1 class="hero-title">
+        IoT<br>
+        Gen<span class="accent">AI</span><br>
+        Edge<span class="accent">AI</span>
+      </h1>
+      <p class="hero-subtitle">One stack. Three layers. Zero compromise.</p>
+      <p class="hero-desc">
+        p4n4 is a Docker Compose platform that wires together Node-RED, InfluxDB, Grafana,
+        Ollama, Letta, n8n, and Edge Impulse into a single self-hosted stack — from Raspberry Pi to GPU server.
+      </p>
+      <div class="hero-actions">
+        <a href="#install" class="btn-primary">
+          <span>↓</span> Get Started
+        </a>
+        <a href="https://github.com/p4n4-io/p4n4" class="btn-secondary">
+          <span>⎇</span> View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot amber"></div>
+        <div class="terminal-dot green"></div>
+        <span class="terminal-title">bash — p4n4 init</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 init --template acme/factory-baseline</span></div>
+        <div class="t-line"><span class="t-comment"></span></div>
+        <div class="t-line"><span class="t-info">  Resolving acme/factory-baseline...</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Found @ v1.2.0 → github.com/acme/p4n4-template-factory</span></div>
+        <div class="t-line"><span class="t-comment"></span></div>
+        <div class="t-line"><span class="t-comment">  ─── Variables ──────────────────────────────</span></div>
+        <div class="t-line"><span class="t-warn">  ? Site ID:</span><span class="t-cmd"> plant-a</span></div>
+        <div class="t-line"><span class="t-warn">  ? Ollama model:</span><span class="t-cmd"> phi3:mini</span></div>
+        <div class="t-line"><span class="t-warn">  ? EI model path:</span><span class="t-cmd"> ./models/motor-fault-v3.eim</span></div>
+        <div class="t-line"><span class="t-comment"></span></div>
+        <div class="t-line"><span class="t-comment">  ─── Generating secrets ─────────────────────</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ MQTT password  ✓ InfluxDB token  ✓ n8n key</span></div>
+        <div class="t-line"><span class="t-comment"></span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Project scaffolded at ./plant-a</span></div>
+        <div class="t-line"><span class="t-comment"></span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 up --all</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ IoT stack   healthy (mosquitto, node-red, influxdb, grafana)</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ GenAI stack healthy (ollama, letta, n8n)</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Edge stack  healthy (ei-motor-fault :1337)</span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> <span class="cursor"></span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">3<span class="unit">×</span></div>
+    <div class="stat-label">Cooperative Stacks</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">8<span class="unit">+</span></div>
+    <div class="stat-label">Open Source Services</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1<span class="unit">cmd</span></div>
+    <div class="stat-label">To Full Stack</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0<span class="unit">$</span></div>
+    <div class="stat-label">Cloud Dependency</div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<section class="arch-section" id="architecture">
+  <div class="section-inner">
+    <div class="section-tag">Architecture</div>
+    <h2 class="section-title">Three stacks.<br>One network.</h2>
+    <p class="section-desc">
+      All services share a Docker bridge network. Node-RED sits at the intersection —
+      wiring sensors to databases, databases to AI, and AI back to devices.
+    </p>
+
+    <div class="arch-diagram reveal">
+
+      <div class="arch-stack iot" data-label="p4n4-iot">
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          Mosquitto
+          <span class="arch-service-port">:1883</span>
         </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-tag">Edge AI Infrastructure</div>
-                <h1 class="hero-title">Platform for Nexus Neural Network Nodes</h1>
-                <p class="hero-subtitle">
-                    Bootstrap complete edge AI systems in minutes. Unified platform combining MING stack, Edge Impulse, and Gen AI layer for IoT engineers building distributed intelligence.
-                </p>
-                <div class="cta-group">
-                    <a href="#" class="btn btn-primary">Get Started →</a>
-                    <a href="#architecture" class="btn btn-secondary">View Architecture</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Concept Section -->
-        <section id="concept">
-            <div class="container">
-                <div class="section-tag">Concept</div>
-                <h2 class="section-title">Nexus Neural Network Nodes (N4)</h2>
-                <p class="section-description">
-                    A distributed edge intelligence architecture where each node runs on-device ML inference while participating in a coordinated mesh network. Data flows from devices through orchestration layers to storage and visualization, with AI agents providing automation and natural language interfaces.
-                </p>
-                <!-- <div class="concept-grid">
-                    <div class="concept-card">
-                        <div class="concept-icon">🔗</div>
-                        <h3>Distributed Edge</h3>
-                        <p>Deploy ML models directly to edge nodes. Process data locally, reduce latency, maintain privacy. Scale horizontally across hundreds of devices.</p>
-                    </div>
-                    <div class="concept-card">
-                        <div class="concept-icon">⚡</div>
-                        <h3>Real-time Pipeline</h3>
-                        <p>MQTT messaging and Node-RED orchestration create low-latency data flows. InfluxDB stores time-series data for historical analysis and Grafana dashboards.</p>
-                    </div>
-                    <div class="concept-card">
-                        <div class="concept-icon">🤖</div>
-                        <h3>AI Automation</h3>
-                        <p>Gen AI layer with n8n workflows, Letta agent memory, and local LLMs via Ollama. Build intelligent automation without external API dependencies.</p>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- Developer Experience Section -->
-        <section id="developer">
-            <div class="container">
-                <div class="section-tag">For Developers</div>
-                <h2 class="section-title">Rapid Deployment</h2>
-                <div class="dx-grid">
-                    <div class="dx-card">
-                        <h3>Quick Start</h3>
-                        <div class="code-block">
-                            <pre><code>
-git clone git@github.com:raisga/p4n4-docker.git
-cd p4n4-docker
-docker compose up -d
-
-# Services ready:
-# MQTT: localhost:1883
-# Node-RED: localhost:1880
-# InfluxDB: localhost:8086
-# Grafana: localhost:3000
-# n8n: localhost:5678
-# Ollama: localhost:11434</code></pre>
-                        </div>
-                    </div>
-                    <div class="dx-card">
-                        <h3>Architecture Benefits</h3>
-                        <ul class="dx-list">
-                            <li>Containerized services with Docker Compose</li>
-                            <li>Pre-configured networking and authentication</li>
-                            <li>Persistent volumes for data retention</li>
-                            <li>Environment variable configuration</li>
-                            <li>Extensible service definitions</li>
-                            <li>Production-grade logging and monitoring</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Open Source Section -->
-        <section id="opensource">
-            <div class="container">
-                <div class="opensource-banner">
-                    <h3>Open Source Infrastructure</h3>
-                    <p>
-                        P4N4 is built on open-source foundations. Community-driven development, transparent roadmap, MIT licensed. Contributions welcome.
-                    </p>
-                    <div class="cta-group" style="justify-content: center;">
-                        <a href="#" class="btn btn-primary">View on GitHub →</a>
-                        <a href="#" class="btn btn-secondary">Join Community</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Architecture Section -->
-        <section id="architecture">
-            <div class="container">
-                <div class="section-tag">Architecture</div>
-                <h2 class="section-title">System Design</h2>
-                <p class="section-description">
-                    Three-layer architecture: device connectivity, data orchestration, and AI automation. Each component is containerized and can be deployed independently or as a complete stack.
-                </p>
-                <div class="architecture-flow">
-                    <div class="flow-layer">
-                        <div class="flow-label">Device Layer</div>
-                        <div class="flow-boxes">
-                            <div class="flow-box">IoT Sensors</div>
-                            <div class="flow-box">Edge Devices</div>
-                            <div class="flow-box">Robotics Nodes</div>
-                            <div class="flow-box">Industrial Equipment</div>
-                        </div>
-                    </div>
-
-                   <div class="flow-arrow">↓</div>
-                    
-                    <div class="flow-layer">
-                        <div class="flow-label">Edge AI</div>
-                        <div class="flow-boxes">
-                            <div class="flow-box">Edge Impulse (ML Models)</div>
-                            <div class="flow-box">On-device Inference</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-arrow">↓</div>
-                    
-                    <div class="flow-layer">
-                        <div class="flow-label">MING Stack</div>
-                        <div class="flow-boxes">
-                            <div class="flow-box">MQTT (Messaging)</div>
-                            <div class="flow-box">InfluxDB (Storage)</div>
-                            <div class="flow-box">Node-RED (Orchestration)</div>
-                            <div class="flow-box">Grafana (Visualization)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-arrow">⇕</div>
-                    
-                    <div class="flow-layer">
-                        <div class="flow-label">Gen AI Layer</div>
-                        <div class="flow-boxes">
-                            <div class="flow-box">n8n (Workflows)</div>
-                            <div class="flow-box">Letta (Agent Memory)</div>
-                            <div class="flow-box">Ollama (Local LLM)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features">
-            <div class="container">
-                <div class="section-tag">Features</div>
-                <h2 class="section-title">Built for Edge AI Development</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-number">01</div>
-                        <h3>Unified Bootstrap</h3>
-                        <p>Single Docker Compose deployment. All services pre-configured and networked. Start building in minutes, not days.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-number">02</div>
-                        <h3>Edge-Native Pipelines</h3>
-                        <p>Purpose-built for edge AI workflows. Device messaging, data orchestration, ML inference, and monitoring in one stack.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-number">03</div>
-                        <h3>Local-First AI</h3>
-                        <p>Run LLMs locally with Ollama. No external API calls. Complete data sovereignty and offline capability.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-number">04</div>
-                        <h3>Modular Stack</h3>
-                        <p>Use what you need. Each component can be deployed independently or as part of the complete platform.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-number">05</div>
-                        <h3>Developer-First</h3>
-                        <p>Built by engineers, for engineers. Clear APIs, comprehensive docs, and extensible architecture.</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-number">06</div>
-                        <h3>Production Ready</h3>
-                        <p>Battle-tested components. Industry-standard protocols. Scales from prototype to production.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Use Cases Section -->
-        <section id="use-cases">
-            <div class="container">
-                <div class="section-tag">Applications</div>
-                <h2 class="section-title">Built For Real-World Systems</h2>
-                <div class="use-cases-list">
-                    <div class="use-case">
-                        <h3>Smart Sensors</h3>
-                        <p>Deploy ML-powered sensor networks. Process environmental data, detect anomalies, trigger automated responses.</p>
-                    </div>
-                    <!-- <div class="use-case">
-                        <h3>Robotics</h3>
-                        <p>Control fleets of autonomous robots. Coordinate behavior, share learned experiences, provide natural language interfaces.</p>
-                    </div> -->
-                    <!-- <div class="use-case">
-                        <h3>Industrial Monitoring</h3>
-                        <p>Track equipment health in real-time. Predict failures, optimize maintenance schedules, reduce downtime.</p>
-                    </div> -->
-                    <!-- <div class="use-case">
-                        <h3>Home Automation</h3>
-                        <p>Build intelligent home systems. Pattern recognition, predictive automation, voice control—all running locally.</p>
-                    </div> -->
-                    <div class="use-case">
-                        <h3>Warehouse Safety</h3>
-                        <p>Real-time edge AI monitoring system for warehouse safety compliance and loss prevention.</p>
-                    </div>
-                    <!-- <div class="use-case">
-                        <h3>Agricultural IoT</h3>
-                        <p>Monitor crop conditions, optimize irrigation, automate greenhouse controls with edge ML inference.</p>
-                    </div> -->
-                    <div class="use-case">
-                        <h3>AI-Controlled Systems</h3>
-                        <p>Let agents make decisions about physical systems. Natural language queries over sensor data and device control.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Platform</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Quick Start</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Discord</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contribute</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Use Cases</a></li>
-                        <li><a href="#">Architecture Guide</a></li>
-                        <li><a href="#">Best Practices</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">License</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>P4N4 — Platform for Nexus Neural Network Nodes. Built for edge AI engineers.</p>
-            </div>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#f97316"></div>
+          Node-RED
+          <span class="arch-service-port">:1880</span>
         </div>
-    </footer>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          InfluxDB
+          <span class="arch-service-port">:8086</span>
+        </div>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#fb923c"></div>
+          Grafana
+          <span class="arch-service-port">:3000</span>
+        </div>
+      </div>
+
+      <div class="arch-arrow">⟷</div>
+
+      <div class="arch-stack genai" data-label="p4n4-ai">
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#fb923c"></div>
+          Ollama
+          <span class="arch-service-port">:11434</span>
+        </div>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#f87171"></div>
+          Letta
+          <span class="arch-service-port">:8283</span>
+        </div>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          n8n
+          <span class="arch-service-port">:5678</span>
+        </div>
+      </div>
+
+      <div class="arch-arrow">⟷</div>
+
+      <div class="arch-stack edge" data-label="p4n4-edge">
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#f97316"></div>
+          EI Inference
+          <span class="arch-service-port">:1337</span>
+        </div>
+        <div class="arch-service">
+          <div class="arch-service-dot" style="background:#f97316"></div>
+          EI Inference
+          <span class="arch-service-port">:1338</span>
+        </div>
+        <div class="arch-service" style="opacity:0.4; font-style:italic;">
+          <div class="arch-service-dot" style="background:#404040"></div>
+          + more models
+          <span class="arch-service-port">…</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Features grid -->
+    <!-- <div class="features-grid">
+      <div class="feature-card reveal">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">Node-RED replaces Telegraf</div>
+        <div class="feature-desc">Visual flow engine with bidirectional data movement, conditional logic, 400+ community nodes, and direct AI call-outs. Everything Telegraf does, and then some.</div>
+        <span class="feature-tag">flow-based programming</span>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <span class="feature-icon">🧠</span>
+        <div class="feature-title">Persistent AI Agents</div>
+        <div class="feature-desc">Letta agents maintain core, archival, and recall memory across sessions. Your Site Monitor agent remembers every anomaly, every maintenance event, every operator conversation.</div>
+        <span class="feature-tag">letta / memgpt</span>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <span class="feature-icon">🔬</span>
+        <div class="feature-title">TinyML at the Sensor</div>
+        <div class="feature-desc">Edge Impulse inference runs as a Docker container with an HTTP API. Classify vibration, audio, and images in &lt;5ms before data ever reaches the broker.</div>
+        <span class="feature-tag">edge impulse / tflite</span>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🏭</span>
+        <div class="feature-title">Fully Self-Hosted</div>
+        <div class="feature-desc">Zero cloud dependency at runtime. Models are pre-downloaded. Secrets stay local. Works air-gapped. Runs on a Raspberry Pi 5 or a rack-mount GPU server equally well.</div>
+        <span class="feature-tag">on-premise</span>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <span class="feature-icon">🔄</span>
+        <div class="feature-title">Composable by Design</div>
+        <div class="feature-desc">Deploy only the IoT stack today. Add GenAI next month. Slot in Edge Impulse models as sensors are deployed. Each stack is independently manageable.</div>
+        <span class="feature-tag">docker compose</span>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <span class="feature-icon">📦</span>
+        <div class="feature-title">Template Registry</div>
+        <div class="feature-desc">Pull industry-specific configurations from Git. Publish your own. Short-name resolution through org indexes. OTA template upgrades with merge safety.</div>
+        <span class="feature-tag">git-backed</span>
+      </div>
+    </div>
+     -->
+  </div>
+</section>
+
+<!-- CLI SECTION -->
+<section class="cli-section" id="cli">
+  <div class="section-inner">
+    <div class="section-tag">CLI Tool</div>
+    <h2 class="section-title">p4n4 init.<br>That's it.</h2>
+    <p class="section-desc">
+      One interactive wizard scaffolds your entire project — compose files, configs, secrets,
+      base flows, dashboards, and EI model wiring. All version-controlled, all idempotent.
+    </p>
+
+    <div class="cli-layout">
+      <div class="cli-commands">
+        <div class="cli-cmd-item active" onclick="showCmd(this, 'init')">
+          <div class="cli-cmd-name">p4n4 init</div>
+          <div class="cli-cmd-desc">Interactive wizard. Scaffolds a complete project directory with secrets, configs, and base flows.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'template')">
+          <div class="cli-cmd-name">p4n4 template</div>
+          <div class="cli-cmd-desc">Pull templates from Git or org indexes. Push your own. Upgrade with merge safety.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'up')">
+          <div class="cli-cmd-name">p4n4 up --all</div>
+          <div class="cli-cmd-desc">Start all stacks in correct dependency order. Polls healthchecks before proceeding.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'status')">
+          <div class="cli-cmd-name">p4n4 status</div>
+          <div class="cli-cmd-desc">Unified health view across all stacks and services with uptime and port listing.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'ei')">
+          <div class="cli-cmd-name">p4n4 ei</div>
+          <div class="cli-cmd-desc">Manage Edge Impulse models. Live inference test, OTA model swap, metadata inspection.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'secret')">
+          <div class="cli-cmd-name">p4n4 secret</div>
+          <div class="cli-cmd-desc">Generate and rotate secrets. Never prints values. Tracks which service uses each key.</div>
+        </div>
+        <div class="cli-cmd-item" onclick="showCmd(this, 'validate')">
+          <div class="cli-cmd-name">p4n4 validate</div>
+          <div class="cli-cmd-desc">Pre-flight checks: Docker version, secrets, YAML validity, port conflicts, EI model presence.</div>
+        </div>
+      </div>
+
+      <div class="cli-preview">
+        <div class="cli-preview-bar" id="preview-label">p4n4 init — interactive wizard</div>
+        <div class="cli-preview-body" id="preview-body">
+<span style="color:var(--muted)">$ p4n4 init</span>
+<span style="color:var(--muted)">──────────────────────────────────</span>
+<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span>
+<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">─── Stacks ──────────────────────</span>
+<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span>
+<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span>
+<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">─── Secrets ─────────────────────</span>
+<span style="color:var(--accent)">✓ MQTT password generated</span>
+<span style="color:var(--accent)">✓ InfluxDB token generated</span>
+<span style="color:var(--accent)">✓ n8n encryption key generated</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section class="template-section" id="templates">
+  <div class="section-inner">
+    <div class="section-tag">Template Registry</div>
+    <h2 class="section-title">Pull. Customise.<br>Deploy. Share.</h2>
+    <p class="section-desc">
+      Templates are Git repositories with a <code style="color:var(--accent);font-family:var(--mono);font-size:14px">p4n4-template.toml</code> manifest.
+      Any Git host works. Org indexes add short-name resolution for teams.
+    </p>
+
+    <div class="template-flow reveal">
+      <div class="template-step">
+        <div class="template-step-num"><span>01</span> — FIND</div>
+        <div class="template-step-title">Discover a template</div>
+        <div class="template-step-desc">Search the community index or your organisation's private index.</div>
+        <div class="template-step-code">p4n4 template search manufacturing</div>
+      </div>
+      <div class="template-step">
+        <div class="template-step-num"><span>02</span> — PULL</div>
+        <div class="template-step-title">Apply to your project</div>
+        <div class="template-step-desc">Variables are rendered, secrets generated, EI models wired up.</div>
+        <div class="template-step-code">p4n4 template pull acme/factory-baseline</div>
+      </div>
+      <div class="template-step">
+        <div class="template-step-num"><span>03</span> — RUN</div>
+        <div class="template-step-title">Validate and start</div>
+        <div class="template-step-desc">Pre-flight checks, then a single command brings everything up.</div>
+        <div class="template-step-code">p4n4 validate && p4n4 up --all</div>
+      </div>
+      <div class="template-step">
+        <div class="template-step-num"><span>04</span> — SHARE</div>
+        <div class="template-step-title">Publish your own</div>
+        <div class="template-step-desc">Secrets are scrubbed automatically. Tag a version. Register in your org index.</div>
+        <div class="template-step-code">p4n4 template push origin --tag 1.0.0</div>
+      </div>
+    </div>
+
+    <div class="section-tag" style="margin-bottom:20px;">Name Resolution</div>
+    <div class="name-resolution reveal">
+      <div class="name-card">
+        <div class="name-card-label">Short name (org-scoped)</div>
+        <div class="name-card-example">acme/factory-baseline</div>
+        <div class="name-card-desc">Resolved via the <em>acme</em> org index registered in <code style="font-family:var(--mono);font-size:11px">~/.p4n4/config.toml</code>. Version defaults to latest.</div>
+      </div>
+      <div class="name-card">
+        <div class="name-card-label">Full Git URL</div>
+        <div class="name-card-example" style="font-size:12px">github.com/acme/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c581db8198c1d0d8c5d9d4c1d098d3d4d6c1dac7ccf5c3849b879b85">[email&#160;protected]</a></div>
+        <div class="name-card-desc">Pulls directly from any Git host. Supports HTTPS and SSH. Pin to any branch, tag, or commit.</div>
+      </div>
+      <div class="name-card">
+        <div class="name-card-label">Local path</div>
+        <div class="name-card-example">./my-local-template</div>
+        <div class="name-card-desc">Use a local directory as a template. Ideal for developing and testing templates before publishing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDGE AI -->
+<section class="edgeai-section" id="edge-ai">
+  <div class="section-inner">
+    <div class="section-tag">Edge AI</div>
+    <h2 class="section-title">Two AI layers.<br>One data fabric.</h2>
+    <p class="section-desc">
+      Edge Impulse handles raw-signal TinyML at sub-100ms latency.
+      Ollama and Letta handle natural language reasoning on aggregated context.
+      They're complementary, not redundant.
+    </p>
+
+    <div class="edgeai-grid">
+      <div class="edgeai-layers reveal">
+
+        <div class="layer">
+          <div class="layer-icon">🔬</div>
+          <div class="layer-info">
+            <div class="layer-name">Edge Impulse Inference</div>
+            <div class="layer-detail">Raw signal → DSP → TFLite classifier → label + anomaly score</div>
+          </div>
+          <div class="layer-latency fast">&lt;5ms</div>
+        </div>
+
+        <div style="height:2px;background:linear-gradient(90deg,rgba(249,115,22,0.22),transparent);margin:0 24px;"></div>
+
+        <div class="layer">
+          <div class="layer-icon">📡</div>
+          <div class="layer-info">
+            <div class="layer-name">Mosquitto + Node-RED</div>
+            <div class="layer-detail">MQTT broker + flow engine bridges raw telemetry and EI results</div>
+          </div>
+          <div class="layer-latency fast">&lt;50ms</div>
+        </div>
+
+        <div style="height:2px;background:linear-gradient(90deg,rgba(148,163,184,0.2),transparent);margin:0 24px;"></div>
+
+        <div class="layer">
+          <div class="layer-icon">💾</div>
+          <div class="layer-info">
+            <div class="layer-name">InfluxDB</div>
+            <div class="layer-detail">Time-series store for raw telemetry and EI classification labels</div>
+          </div>
+          <div class="layer-latency fast">persistent</div>
+        </div>
+
+        <div style="height:2px;background:linear-gradient(90deg,rgba(251,146,60,0.2),transparent);margin:0 24px;"></div>
+
+        <div class="layer">
+          <div class="layer-icon">🧠</div>
+          <div class="layer-info">
+            <div class="layer-name">Ollama LLM</div>
+            <div class="layer-detail">Explain anomalies in plain English. phi3:mini to llama3:8b.</div>
+          </div>
+          <div class="layer-latency slow">~2–8s</div>
+        </div>
+
+        <div style="height:2px;background:linear-gradient(90deg,rgba(248,113,113,0.2),transparent);margin:0 24px;"></div>
+
+        <div class="layer">
+          <div class="layer-icon">🤖</div>
+          <div class="layer-info">
+            <div class="layer-name">Letta Agents</div>
+            <div class="layer-detail">Persistent agent memory. Accumulates fault history. Operator-facing chatbot.</div>
+          </div>
+          <div class="layer-latency slow">stateful</div>
+        </div>
+
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">EI inference response</div>
+        <div style="background:var(--bg2);border:1px solid var(--border2);padding:24px;font-family:var(--mono);font-size:12px;line-height:1.9;border-top:2px solid var(--accent);">
+<span style="color:var(--muted)">POST /api/features HTTP/1.1</span>
+<span style="color:var(--muted)">Host: ei-vibration-fault:1337</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">{</span>
+<span style="color:var(--muted)">  "features": [0.12, -0.05, 1.01, ...]</span>
+<span style="color:var(--muted)">}</span>
+<span style="color:var(--muted)">─────────────────────────────────</span>
+<span style="color:var(--text)">{</span>
+<span style="color:var(--text)">  "result": {</span>
+<span style="color:var(--text)">    "classification": {</span>
+<span style="color:var(--accent)">      "normal":  0.964,</span>
+<span style="color:var(--red)">      "fault":   0.031,</span>
+<span style="color:var(--muted)">      "unknown": 0.005</span>
+<span style="color:var(--text)">    },</span>
+<span style="color:var(--amber)">    "anomaly": -0.18</span>
+<span style="color:var(--text)">  },</span>
+<span style="color:var(--text)">  "timing": {</span>
+<span style="color:var(--muted)">    "dsp": 2, "classification": 1</span>
+<span style="color:var(--text)">  }</span>
+<span style="color:var(--text)">}</span>
+        </div>
+
+        <div style="margin-top:24px;background:var(--bg2);border:1px solid var(--border2);padding:24px;font-family:var(--mono);font-size:12px;line-height:1.9;border-top:2px solid var(--amber);">
+<span style="color:var(--muted)">Node-RED: if fault > 0.7 → Ollama</span>
+<span style="color:var(--muted)">─────────────────────────────────</span>
+<span style="color:var(--amber)">→ "Motor M003 shows early-stage</span>
+<span style="color:var(--amber)">   bearing fault signature at 3.2 kHz.</span>
+<span style="color:var(--amber)">   Last maintenance: 47 days ago.</span>
+<span style="color:var(--amber)">   Recommend inspection within 72h."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="install-section" id="install">
+  <div class="section-inner install-inner">
+    <div class="section-tag" style="justify-content:center">Get Started</div>
+    <h2 class="install-title">Up in five minutes.</h2>
+    <p class="install-subtitle">Requires Docker, Docker Compose, and Python 3.11+</p>
+
+    <div class="install-box reveal">
+      <div class="install-box-label">quickstart</div>
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">01</div>
+          <div class="install-step-code">
+            <span class="cmd">pip install p4n4</span>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">02</div>
+          <div class="install-step-code">
+            <span class="cmd">p4n4 init</span> <span style="color:var(--muted)"># or: p4n4 init --template acme/factory-baseline</span>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">03</div>
+          <div class="install-step-code">
+            <span class="cmd">cd</span> <span class="arg">my-project</span>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">04</div>
+          <div class="install-step-code">
+            <span class="cmd">p4n4 validate</span>
+            <span class="comment"># pre-flight: docker, secrets, ports, EI models</span>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">05</div>
+          <div class="install-step-code">
+            <span class="cmd">p4n4 up --all</span>
+            <span class="comment"># node-red :1880  grafana :3000  n8n :5678</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="install-links">
+      <a href="#" class="install-link">📖 Documentation</a>
+      <a href="#" class="install-link">⎇ GitHub</a>
+      <a href="#" class="install-link">📦 PyPI</a>
+      <a href="#" class="install-link">💬 Discord</a>
+      <a href="#" class="install-link">🏷️ Template Registry</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">p4n4<span>.com</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">GitHub</a></li>
+    <li><a href="#">Templates</a></li>
+    <li><a href="#">Discord</a></li>
+    <li><a href="#">License</a></li>
+  </ul>
+  <div class="footer-copy">MIT License — self-hosted, always.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── CLI preview switcher
+  const previews = {
+    init: {
+      label: 'p4n4 init — interactive wizard',
+      body: `<span style="color:var(--muted)">$ p4n4 init</span>
+<span style="color:var(--muted)">──────────────────────────────────────</span>
+<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span>
+<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">─── Stacks ──────────────────────────</span>
+<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span>
+<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span>
+<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">─── Secrets ─────────────────────────</span>
+<span style="color:var(--accent)">✓ MQTT password generated</span>
+<span style="color:var(--accent)">✓ InfluxDB token generated</span>
+<span style="color:var(--accent)">✓ n8n encryption key generated</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span>`
+    },
+    template: {
+      label: 'p4n4 template pull acme/factory-baseline',
+      body: `<span style="color:var(--muted)">$ p4n4 template pull acme/factory-baseline</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--blue)">  Resolving acme/factory-baseline...</span>
+<span style="color:var(--accent)">  ✓ Found v1.2.0 → github.com/acme/p4n4-template-factory</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--amber)">? site_id [site-1]: </span><span style="color:#fff">plant-a</span>
+<span style="color:var(--amber)">? ollama_model: </span><span style="color:#fff">phi3:mini</span>
+<span style="color:var(--amber)">? EI model path: </span><span style="color:#fff">./models/motor-fault-v3.eim</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  ✓ Rendered 8 template files</span>
+<span style="color:var(--accent)">  ✓ Copied 13 static files</span>
+<span style="color:var(--accent)">  ✓ Secrets generated</span>
+<span style="color:var(--accent)">  ✓ Template locked: acme/factory-baseline@1.2.0</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  ✓ Project ready at ./plant-a</span>`
+    },
+    up: {
+      label: 'p4n4 up --all',
+      body: `<span style="color:var(--muted)">$ p4n4 up --all</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--blue)">  Starting IoT stack...</span>
+<span style="color:var(--accent)">  ✓ mosquitto   healthy</span>
+<span style="color:var(--accent)">  ✓ influxdb    healthy</span>
+<span style="color:var(--accent)">  ✓ node-red    healthy</span>
+<span style="color:var(--accent)">  ✓ grafana     healthy</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--blue)">  Starting GenAI stack...</span>
+<span style="color:var(--accent)">  ✓ ollama      healthy</span>
+<span style="color:var(--accent)">  ✓ letta       healthy</span>
+<span style="color:var(--accent)">  ✓ n8n         healthy</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--blue)">  Starting Edge stack...</span>
+<span style="color:var(--accent)">  ✓ ei-vibration-fault  healthy  :1337</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  All stacks healthy. Access points:</span>
+<span style="color:var(--text)">    Node-RED → http://localhost:1880</span>
+<span style="color:var(--text)">    Grafana  → http://localhost:3000</span>
+<span style="color:var(--text)">    n8n      → http://localhost:5678</span>`
+    },
+    status: {
+      label: 'p4n4 status',
+      body: `<span style="color:var(--muted)">$ p4n4 status</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--text)">  p4n4 — plant-a @ factory-floor-1</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--blue)">  IoT Stack</span>
+<span style="color:var(--accent)">  ✓ mosquitto   2d 14h   :1883 :8883</span>
+<span style="color:var(--accent)">  ✓ node-red    2d 14h   :1880</span>
+<span style="color:var(--accent)">  ✓ influxdb    2d 14h   :8086</span>
+<span style="color:var(--accent)">  ✓ grafana     2d 14h   :3000</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--amber)">  GenAI Stack</span>
+<span style="color:var(--accent)">  ✓ ollama      2d 14h   :11434</span>
+<span style="color:var(--accent)">  ✓ letta       2d 14h   :8283</span>
+<span style="color:var(--accent)">  ✓ n8n         2d 14h   :5678</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  Edge Stack</span>
+<span style="color:var(--accent)">  ✓ ei-vibration-fault  2d 14h  :1337</span>
+<span style="color:var(--muted)">    model: motor-fault-v3.eim</span>`
+    },
+    ei: {
+      label: 'p4n4 ei infer vibration-fault',
+      body: `<span style="color:var(--muted)">$ p4n4 ei infer vibration-fault \</span>
+<span style="color:var(--muted)">    --features "0.12,-0.05,1.01,0.33"</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--blue)">  Inference: ei-vibration-fault @ :1337</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--text)">  Label       Score</span>
+<span style="color:var(--muted)">  ─────────────────</span>
+<span style="color:var(--accent)">  normal      0.964</span>
+<span style="color:var(--red)">  fault       0.031</span>
+<span style="color:var(--muted)">  unknown     0.005</span>
+<span style="color:var(--muted)">  ─────────────────</span>
+<span style="color:var(--amber)">  anomaly    -0.18</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">  Timing: dsp=2ms  classification=1ms</span>`
+    },
+    secret: {
+      label: 'p4n4 secret status',
+      body: `<span style="color:var(--muted)">$ p4n4 secret status</span>
+<span style="color:var(--muted)">──────────────────────────────────────────────</span>
+<span style="color:var(--text)">  Key                        Status   Used By</span>
+<span style="color:var(--muted)">  ──────────────────────────────────────────</span>
+<span style="color:var(--accent)">  MQTT_PASSWORD              ✓ set    mosquitto, node-red</span>
+<span style="color:var(--accent)">  INFLUXDB_ADMIN_TOKEN       ✓ set    influxdb, node-red, n8n</span>
+<span style="color:var(--accent)">  GF_SECURITY_ADMIN_PASSWORD ✓ set    grafana</span>
+<span style="color:var(--accent)">  N8N_ENCRYPTION_KEY         ✓ set    n8n</span>
+<span style="color:var(--accent)">  LETTA_SERVER_PASSWORD      ✓ set    letta</span>
+<span style="color:var(--amber)">  EI_API_KEY                 ─ unset  edge-impulse (optional)</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--text)">  $ p4n4 secret rotate influxdb-token --restart</span>
+<span style="color:var(--accent)">  ✓ INFLUXDB_ADMIN_TOKEN rotated</span>
+<span style="color:var(--accent)">  ✓ influxdb restarted</span>
+<span style="color:var(--accent)">  ✓ node-red restarted</span>`
+    },
+    validate: {
+      label: 'p4n4 validate',
+      body: `<span style="color:var(--muted)">$ p4n4 validate</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--accent)">  ✓ docker 27.3.1</span>
+<span style="color:var(--accent)">  ✓ docker compose v2.29.1</span>
+<span style="color:var(--accent)">  ✓ .env present and readable</span>
+<span style="color:var(--accent)">  ✓ All required secrets set</span>
+<span style="color:var(--accent)">  ✓ docker-compose.iot.yml  — valid</span>
+<span style="color:var(--accent)">  ✓ docker-compose.ai.yml   — valid</span>
+<span style="color:var(--accent)">  ✓ docker-compose.edge.yml — valid</span>
+<span style="color:var(--accent)">  ✓ EI models present:</span>
+<span style="color:var(--muted)">      motor-fault-v3.eim  (1.2 MB, aarch64)</span>
+<span style="color:var(--accent)">  ✓ Port conflicts: none</span>
+<span style="color:var(--accent)">  ✓ Node-RED flows.json — valid JSON</span>
+<span style="color:var(--accent)">  ✓ Mosquitto passwd — non-empty</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  All checks passed. Ready: p4n4 up --all</span>`
+    }
+  };
+
+  function showCmd(el, key) {
+    document.querySelectorAll('.cli-cmd-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    const p = previews[key];
+    document.getElementById('preview-label').textContent = p.label;
+    const body = document.getElementById('preview-body');
+    body.style.opacity = '0';
+    setTimeout(() => {
+      body.innerHTML = p.body;
+      body.style.opacity = '1';
+      body.style.transition = 'opacity 0.2s';
+    }, 150);
+  }
+</script>
 </body>
 </html>
