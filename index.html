@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./public/styles.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -17,12 +18,13 @@
   <a href="#" class="nav-logo">p4n4<span>.com</span></a>
   <ul class="nav-links">
     <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#compare">Compare</a></li>
     <li><a href="#cli">CLI</a></li>
     <li><a href="#templates">Templates</a></li>
     <li><a href="#edge-ai">Edge AI</a></li>
     <li><a href="#docs">Docs</a></li>
   </ul>
-  <a href="#install" class="nav-cta">$ pip install p4n4</a>
+  <button class="nav-cta" id="copy-btn" onclick="copyInstall()">$ pip install p4n4</button>
 </nav>
 
 <!-- HERO -->
@@ -47,7 +49,7 @@
           <span>↓</span> Get Started
         </a>
         <a href="https://github.com/p4n4-io/p4n4" class="btn-secondary">
-          <span>⎇</span> View on GitHub
+          <i data-lucide="github"></i> View on GitHub
         </a>
       </div>
     </div>
@@ -111,8 +113,9 @@
     <div class="section-tag">Architecture</div>
     <h2 class="section-title">Three stacks.<br>One network.</h2>
     <p class="section-desc">
-      All services share a Docker bridge network. Node-RED sits at the intersection —
-      wiring sensors to databases, databases to AI, and AI back to devices.
+      Built on the proven <strong style="color:var(--accent)">MING stack</strong> — Mosquitto, InfluxDB, Node-RED, Grafana —
+      and extended with a GenAI layer and Edge AI inference. All services share a Docker bridge network,
+      with Node-RED at the intersection wiring sensors, databases, and AI together.
     </p>
 
     <div class="arch-diagram reveal">
@@ -183,45 +186,183 @@
     </div>
 
     <!-- Features grid -->
-    <!-- <div class="features-grid">
+    <div class="features-grid" style="margin-top:48px;">
       <div class="feature-card reveal">
-        <span class="feature-icon">⚡</span>
-        <div class="feature-title">Node-RED replaces Telegraf</div>
+        <span class="feature-icon"><i data-lucide="workflow"></i></span>
+        <div class="feature-title">Visual Flow Orchestration</div>
         <div class="feature-desc">Visual flow engine with bidirectional data movement, conditional logic, 400+ community nodes, and direct AI call-outs. Everything Telegraf does, and then some.</div>
         <span class="feature-tag">flow-based programming</span>
       </div>
       <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon">🧠</span>
+        <span class="feature-icon"><i data-lucide="brain"></i></span>
         <div class="feature-title">Persistent AI Agents</div>
         <div class="feature-desc">Letta agents maintain core, archival, and recall memory across sessions. Your Site Monitor agent remembers every anomaly, every maintenance event, every operator conversation.</div>
         <span class="feature-tag">letta / memgpt</span>
       </div>
       <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon">🔬</span>
+        <span class="feature-icon"><i data-lucide="cpu"></i></span>
         <div class="feature-title">TinyML at the Sensor</div>
         <div class="feature-desc">Edge Impulse inference runs as a Docker container with an HTTP API. Classify vibration, audio, and images in &lt;5ms before data ever reaches the broker.</div>
         <span class="feature-tag">edge impulse / tflite</span>
       </div>
       <div class="feature-card reveal">
-        <span class="feature-icon">🏭</span>
+        <span class="feature-icon"><i data-lucide="server"></i></span>
         <div class="feature-title">Fully Self-Hosted</div>
         <div class="feature-desc">Zero cloud dependency at runtime. Models are pre-downloaded. Secrets stay local. Works air-gapped. Runs on a Raspberry Pi 5 or a rack-mount GPU server equally well.</div>
         <span class="feature-tag">on-premise</span>
       </div>
       <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon">🔄</span>
+        <span class="feature-icon"><i data-lucide="layers"></i></span>
         <div class="feature-title">Composable by Design</div>
         <div class="feature-desc">Deploy only the IoT stack today. Add GenAI next month. Slot in Edge Impulse models as sensors are deployed. Each stack is independently manageable.</div>
         <span class="feature-tag">docker compose</span>
       </div>
       <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon">📦</span>
+        <span class="feature-icon"><i data-lucide="package"></i></span>
         <div class="feature-title">Template Registry</div>
         <div class="feature-desc">Pull industry-specific configurations from Git. Publish your own. Short-name resolution through org indexes. OTA template upgrades with merge safety.</div>
         <span class="feature-tag">git-backed</span>
       </div>
     </div>
-     -->
+  </div>
+</section>
+
+<!-- MING + COMPARE -->
+<section class="compare-section" id="compare">
+  <div class="section-inner">
+    <div class="section-tag">Built on MING</div>
+    <h2 class="section-title">The proven IoT foundation.<br>Now AI-native.</h2>
+    <p class="section-desc">
+      <strong style="color:var(--accent)">MING</strong> — Mosquitto, InfluxDB, Node-RED, Grafana — is a battle-tested open-source IoT stack
+      used across industrial, agricultural, and smart-building deployments worldwide.
+      p4n4 takes MING as its core and extends it with a complete GenAI layer and on-device Edge AI.
+    </p>
+
+    <div class="ming-grid reveal">
+      <div class="ming-card">
+        <div class="ming-letter">M</div>
+        <div class="ming-info">
+          <div class="ming-name">Mosquitto</div>
+          <div class="ming-role">MQTT Broker</div>
+          <div class="ming-desc">Eclipse Mosquitto handles all device messaging. Publish/subscribe at scale, TLS-encrypted, ACL-controlled topic namespaces per site and device type.</div>
+        </div>
+      </div>
+      <div class="ming-card">
+        <div class="ming-letter">I</div>
+        <div class="ming-info">
+          <div class="ming-name">InfluxDB</div>
+          <div class="ming-role">Time-Series Store</div>
+          <div class="ming-desc">Purpose-built for sensor telemetry. Flux query language, data retention policies, and a REST API consumed by Grafana, Node-RED, and the full AI layer.</div>
+        </div>
+      </div>
+      <div class="ming-card">
+        <div class="ming-letter">N</div>
+        <div class="ming-info">
+          <div class="ming-name">Node-RED</div>
+          <div class="ming-role">Flow Orchestrator</div>
+          <div class="ming-desc">Visual, bidirectional flow engine. 400+ community nodes. Replaces Telegraf with full conditional logic, device actuation, and direct AI call-outs — all in a browser.</div>
+        </div>
+      </div>
+      <div class="ming-card">
+        <div class="ming-letter">G</div>
+        <div class="ming-info">
+          <div class="ming-name">Grafana</div>
+          <div class="ming-role">Dashboards & Alerts</div>
+          <div class="ming-desc">Real-time dashboards and unified alerting. Alert webhooks feed into n8n for AI-enriched notifications — plain-English anomaly summaries before they hit your inbox.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-tag" style="margin-top:72px;margin-bottom:12px;">IoTStack vs p4n4</div>
+    <h3 class="compare-subtitle">Why p4n4 over TIGUITTO?</h3>
+    <p class="section-desc" style="margin-bottom:36px;">
+      TIGUITTO is a solid starting point. p4n4 is where IoT projects go when they need intelligence,
+      not just telemetry. The IoT stack is identical — what changes is everything on top of it.
+    </p>
+
+    <div class="compare-table-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>TIGUITTO <span class="th-sub">/ IoTStack</span></th>
+            <th class="th-p4n4">p4n4</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data ingestion</td>
+            <td class="td-no">Telegraf <span class="td-note">metrics-scraping agent only</span></td>
+            <td class="td-yes">Node-RED <span class="td-note">visual, bidirectional flow engine</span></td>
+          </tr>
+          <tr>
+            <td>MQTT broker</td>
+            <td class="td-ok">Eclipse Mosquitto</td>
+            <td class="td-yes">Eclipse Mosquitto</td>
+          </tr>
+          <tr>
+            <td>Time-series DB</td>
+            <td class="td-ok">InfluxDB</td>
+            <td class="td-yes">InfluxDB</td>
+          </tr>
+          <tr>
+            <td>Visualisation</td>
+            <td class="td-ok">Grafana</td>
+            <td class="td-yes">Grafana</td>
+          </tr>
+          <tr>
+            <td>Conditional logic</td>
+            <td class="td-no">Limited <span class="td-note">Telegraf processors only</span></td>
+            <td class="td-yes">Full <span class="td-note">Node-RED function nodes + JS</span></td>
+          </tr>
+          <tr>
+            <td>Device actuation</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">MQTT out, HTTP out</span></td>
+          </tr>
+          <tr>
+            <td>Protocol bridging</td>
+            <td class="td-no">MQTT only</td>
+            <td class="td-yes">MQTT, HTTP, WebSocket, Modbus, OPC-UA&hellip;</td>
+          </tr>
+          <tr>
+            <td>AI integration</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">Ollama, Letta, n8n</span></td>
+          </tr>
+          <tr>
+            <td>Workflow automation</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">n8n — webhook, cron, AI chains</span></td>
+          </tr>
+          <tr>
+            <td>Agent memory</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">Letta / MemGPT — persistent across sessions</span></td>
+          </tr>
+          <tr>
+            <td>Local LLM inference</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">Ollama — phi3, mistral, llama3</span></td>
+          </tr>
+          <tr>
+            <td>Visual programming</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">Node-RED browser editor</span></td>
+          </tr>
+          <tr>
+            <td>Edge ML inference</td>
+            <td class="td-cross">&#x2717;</td>
+            <td class="td-yes">&#x2713; <span class="td-note">Edge Impulse — &lt;5ms, Docker container</span></td>
+          </tr>
+          <tr>
+            <td>Edge deployment</td>
+            <td class="td-ok">&#x2713; <span class="td-note">Pi compatible</span></td>
+            <td class="td-yes">&#x2713; <span class="td-note">Pi 5 + optional GPU acceleration</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -365,7 +506,7 @@
       <div class="edgeai-layers reveal">
 
         <div class="layer">
-          <div class="layer-icon">🔬</div>
+          <div class="layer-icon"><i data-lucide="zap"></i></div>
           <div class="layer-info">
             <div class="layer-name">Edge Impulse Inference</div>
             <div class="layer-detail">Raw signal → DSP → TFLite classifier → label + anomaly score</div>
@@ -376,7 +517,7 @@
         <div style="height:2px;background:linear-gradient(90deg,rgba(249,115,22,0.22),transparent);margin:0 24px;"></div>
 
         <div class="layer">
-          <div class="layer-icon">📡</div>
+          <div class="layer-icon"><i data-lucide="radio"></i></div>
           <div class="layer-info">
             <div class="layer-name">Mosquitto + Node-RED</div>
             <div class="layer-detail">MQTT broker + flow engine bridges raw telemetry and EI results</div>
@@ -387,7 +528,7 @@
         <div style="height:2px;background:linear-gradient(90deg,rgba(148,163,184,0.2),transparent);margin:0 24px;"></div>
 
         <div class="layer">
-          <div class="layer-icon">💾</div>
+          <div class="layer-icon"><i data-lucide="database"></i></div>
           <div class="layer-info">
             <div class="layer-name">InfluxDB</div>
             <div class="layer-detail">Time-series store for raw telemetry and EI classification labels</div>
@@ -398,7 +539,7 @@
         <div style="height:2px;background:linear-gradient(90deg,rgba(251,146,60,0.2),transparent);margin:0 24px;"></div>
 
         <div class="layer">
-          <div class="layer-icon">🧠</div>
+          <div class="layer-icon"><i data-lucide="brain"></i></div>
           <div class="layer-info">
             <div class="layer-name">Ollama LLM</div>
             <div class="layer-detail">Explain anomalies in plain English. phi3:mini to llama3:8b.</div>
@@ -409,7 +550,7 @@
         <div style="height:2px;background:linear-gradient(90deg,rgba(248,113,113,0.2),transparent);margin:0 24px;"></div>
 
         <div class="layer">
-          <div class="layer-icon">🤖</div>
+          <div class="layer-icon"><i data-lucide="bot"></i></div>
           <div class="layer-info">
             <div class="layer-name">Letta Agents</div>
             <div class="layer-detail">Persistent agent memory. Accumulates fault history. Operator-facing chatbot.</div>
@@ -503,11 +644,11 @@
     </div>
 
     <div class="install-links">
-      <a href="#" class="install-link">📖 Documentation</a>
-      <a href="#" class="install-link">⎇ GitHub</a>
-      <a href="#" class="install-link">📦 PyPI</a>
-      <a href="#" class="install-link">💬 Discord</a>
-      <a href="#" class="install-link">🏷️ Template Registry</a>
+      <a href="#" class="install-link"><i data-lucide="book-open"></i> Documentation</a>
+      <a href="#" class="install-link"><i data-lucide="github"></i> GitHub</a>
+      <a href="#" class="install-link"><i data-lucide="package"></i> PyPI</a>
+      <a href="#" class="install-link"><i data-lucide="message-circle"></i> Discord</a>
+      <a href="#" class="install-link"><i data-lucide="tag"></i> Template Registry</a>
     </div>
   </div>
 </section>
@@ -676,6 +817,23 @@
 <span style="color:var(--accent)">  All checks passed. Ready: p4n4 up --all</span>`
     }
   };
+
+  // ── Lucide icons
+  lucide.createIcons();
+
+  // ── Copy install command
+  function copyInstall() {
+    navigator.clipboard.writeText('pip install p4n4').then(() => {
+      const btn = document.getElementById('copy-btn');
+      const original = btn.textContent;
+      btn.textContent = '✓ copied!';
+      btn.style.background = 'var(--accent2)';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+      }, 2000);
+    });
+  }
 
   function showCmd(el, key) {
     document.querySelectorAll('.cli-cmd-item').forEach(i => i.classList.remove('active'));

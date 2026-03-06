@@ -7,8 +7,8 @@
     --amber:    #fb923c;
     --blue:     #94a3b8;
     --red:      #f87171;
-    --text:     #e2e2e2;
-    --muted:    #929292;
+    --text:     #ececec;
+    --muted:    #a8a8a8;
     --border:   #1f1f1f;
     --border2:  #2a2a2a;
     --mono:     'JetBrains Mono', monospace;
@@ -95,8 +95,10 @@
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s, transform 0.1s;
+    user-select: none;
   }
   .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+  .nav-cta:active { transform: translateY(0); }
 
   /* ── HERO ── */
   .hero {
@@ -187,7 +189,6 @@
     line-height: 1.7;
     max-width: 480px;
     margin-bottom: 40px;
-    opacity: 0.8;
   }
 
   .hero-actions {
@@ -239,6 +240,12 @@
     align-items: center;
     gap: 8px;
     transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    stroke-width: 2;
   }
   .btn-secondary:hover {
     border-color: var(--accent);
@@ -422,10 +429,9 @@
 
   .section-desc {
     font-size: 16px;
-    color: var(--text);
+    color: var(--muted);
     max-width: 560px;
     line-height: 1.7;
-    opacity: 0.75;
     margin-bottom: 60px;
   }
 
@@ -529,9 +535,14 @@
   .feature-card:hover { background: var(--bg3); }
 
   .feature-icon {
-    font-size: 28px;
     margin-bottom: 20px;
     display: block;
+  }
+  .feature-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--accent);
+    stroke-width: 1.5;
   }
 
   .feature-title {
@@ -560,6 +571,151 @@
     border: 1px solid var(--border2);
     color: var(--muted);
   }
+
+  /* ── COMPARE / MING SECTION ── */
+  .compare-section { background: var(--bg2); }
+
+  .compare-subtitle {
+    font-family: var(--display);
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .ming-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .ming-card {
+    background: var(--bg3);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .ming-card:hover { background: var(--bg); }
+  .ming-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .ming-card:hover::after { transform: scaleX(1); }
+
+  .ming-letter {
+    font-family: var(--display);
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--accent);
+    opacity: 0.1;
+    line-height: 1;
+    letter-spacing: -4px;
+    position: absolute;
+    bottom: 8px; right: 16px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ming-name {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .ming-role {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: -4px;
+  }
+  .ming-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border2);
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+
+  .compare-table thead tr {
+    background: var(--bg3);
+    border-bottom: 2px solid var(--border2);
+  }
+
+  .compare-table th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .compare-table th.th-p4n4 {
+    color: var(--accent);
+    border-left: 2px solid rgba(249,115,22,0.3);
+  }
+  .compare-table .th-sub { font-size: 9px; color: #666; }
+
+  .compare-table td {
+    padding: 11px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+  .compare-table td:nth-child(3) { border-left: 2px solid rgba(249,115,22,0.15); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(249,115,22,0.025); }
+  .compare-table td:first-child {
+    color: var(--muted);
+    font-size: 12px;
+    min-width: 160px;
+    white-space: nowrap;
+  }
+
+  .td-yes { color: var(--accent) !important; }
+  .td-ok  { color: var(--text) !important; }
+  .td-no  { color: var(--muted) !important; }
+  .td-cross {
+    color: #505050 !important;
+    font-size: 16px;
+  }
+  .td-note {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    display: block;
+    margin-top: 2px;
+  }
+  .td-yes .td-note { color: rgba(249,115,22,0.85); }
 
   /* ── CLI SECTION ── */
   .cli-section { background: var(--bg); }
@@ -757,10 +913,17 @@
   .layer:hover { border-color: var(--accent); }
 
   .layer-icon {
-    font-size: 22px;
     flex-shrink: 0;
     width: 40px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .layer-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent);
+    stroke-width: 1.5;
   }
 
   .layer-info { flex: 1; }
@@ -893,6 +1056,13 @@
     gap: 8px;
     transition: color 0.2s;
   }
+  .install-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
   .install-link:hover { color: var(--accent); }
 
   /* ── FOOTER ── */
@@ -977,6 +1147,7 @@
     section { padding: 64px 24px; }
     .stats-bar { gap: 40px; flex-wrap: wrap; padding: 24px; }
     .features-grid { grid-template-columns: 1fr; }
+    .ming-grid { grid-template-columns: 1fr 1fr; }
     .cli-layout { grid-template-columns: 1fr; }
     .arch-diagram { grid-template-columns: 1fr; }
     .arch-arrow { display: none; }
