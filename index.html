@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>p4n4 — IoT + GenAI + Edge ML Platform</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./public/styles.css">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p4n4 — IoT + GenAI + Edge ML Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./public/styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -24,8 +24,25 @@
     <li><a href="#edge-ai">Edge AI</a></li>
     <li><a href="#docs">Docs</a></li>
   </ul>
-  <button class="nav-cta" id="copy-btn" onclick="copyInstall()">$ pip install p4n4</button>
+  <div class="nav-right">
+    <button class="nav-cta" id="copy-btn">$ pip install p4n4</button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <a href="#architecture">Architecture</a>
+  <a href="#compare">Compare</a>
+  <a href="#cli">CLI</a>
+  <a href="#templates">Templates</a>
+  <a href="#edge-ai">Edge AI</a>
+  <a href="#docs">Docs</a>
+  <button class="nav-cta nav-mobile-cta" id="copy-btn-mobile">$ pip install p4n4</button>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -48,7 +65,7 @@
         <a href="#install" class="btn-primary">
           <span>↓</span> Get Started
         </a>
-        <a href="https://github.com/p4n4-io/p4n4" class="btn-secondary">
+        <a href="https://github.com/raisga/p4n4" class="btn-secondary">
           <i data-lucide="github"></i> View on GitHub
         </a>
       </div>
@@ -113,7 +130,7 @@
     <div class="section-tag">Architecture</div>
     <h2 class="section-title">Three stacks.<br>One network.</h2>
     <p class="section-desc">
-      Built on the proven <strong style="color:var(--accent)">MING stack</strong> — Mosquitto, InfluxDB, Node-RED, Grafana —
+      Built on the proven <strong class="text-accent">MING stack</strong> — Mosquitto, InfluxDB, Node-RED, Grafana —
       and extended with a GenAI layer and Edge AI inference. All services share a Docker bridge network,
       with Node-RED at the intersection wiring sensors, databases, and AI together.
     </p>
@@ -122,22 +139,22 @@
 
       <div class="arch-stack iot" data-label="p4n4-iot">
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          <div class="arch-service-dot dot-gray"></div>
           Mosquitto
           <span class="arch-service-port">:1883</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#f97316"></div>
+          <div class="arch-service-dot dot-orange"></div>
           Node-RED
           <span class="arch-service-port">:1880</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          <div class="arch-service-dot dot-gray"></div>
           InfluxDB
           <span class="arch-service-port">:8086</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#fb923c"></div>
+          <div class="arch-service-dot dot-amber"></div>
           Grafana
           <span class="arch-service-port">:3000</span>
         </div>
@@ -147,17 +164,17 @@
 
       <div class="arch-stack genai" data-label="p4n4-ai">
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#fb923c"></div>
+          <div class="arch-service-dot dot-amber"></div>
           Ollama
           <span class="arch-service-port">:11434</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#f87171"></div>
+          <div class="arch-service-dot dot-red"></div>
           Letta
           <span class="arch-service-port">:8283</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#94a3b8"></div>
+          <div class="arch-service-dot dot-gray"></div>
           n8n
           <span class="arch-service-port">:5678</span>
         </div>
@@ -167,17 +184,17 @@
 
       <div class="arch-stack edge" data-label="p4n4-edge">
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#f97316"></div>
+          <div class="arch-service-dot dot-orange"></div>
           EI Inference
           <span class="arch-service-port">:1337</span>
         </div>
         <div class="arch-service">
-          <div class="arch-service-dot" style="background:#f97316"></div>
+          <div class="arch-service-dot dot-orange"></div>
           EI Inference
           <span class="arch-service-port">:1338</span>
         </div>
-        <div class="arch-service" style="opacity:0.4; font-style:italic;">
-          <div class="arch-service-dot" style="background:#404040"></div>
+        <div class="arch-service arch-service--dim">
+          <div class="arch-service-dot dot-dim"></div>
           + more models
           <span class="arch-service-port">…</span>
         </div>
@@ -186,7 +203,7 @@
     </div>
 
     <!-- Features grid -->
-    <div class="features-grid" style="margin-top:48px;">
+    <div class="features-grid">
       <div class="feature-card reveal">
         <span class="feature-icon"><i data-lucide="workflow"></i></span>
         <div class="feature-title">Visual Flow Orchestration</div>
@@ -233,7 +250,7 @@
     <div class="section-tag">Built on MING</div>
     <h2 class="section-title">The proven IoT foundation.<br>Now AI-native.</h2>
     <p class="section-desc">
-      <strong style="color:var(--accent)">MING</strong> — Mosquitto, InfluxDB, Node-RED, Grafana — is a battle-tested open-source IoT stack
+      <strong class="text-accent">MING</strong> — Mosquitto, InfluxDB, Node-RED, Grafana — is a battle-tested open-source IoT stack
       used across industrial, agricultural, and smart-building deployments worldwide.
       p4n4 takes MING as its core and extends it with a complete GenAI layer and on-device Edge AI.
     </p>
@@ -267,15 +284,15 @@
         <div class="ming-letter">G</div>
         <div class="ming-info">
           <div class="ming-name">Grafana</div>
-          <div class="ming-role">Dashboards & Alerts</div>
+          <div class="ming-role">Dashboards &amp; Alerts</div>
           <div class="ming-desc">Real-time dashboards and unified alerting. Alert webhooks feed into n8n for AI-enriched notifications — plain-English anomaly summaries before they hit your inbox.</div>
         </div>
       </div>
     </div>
 
-    <div class="section-tag" style="margin-top:72px;margin-bottom:12px;">IoTStack vs p4n4</div>
+    <div class="section-tag section-tag--spaced">IoTStack vs p4n4</div>
     <h3 class="compare-subtitle">Why p4n4 over TIGUITTO?</h3>
-    <p class="section-desc" style="margin-bottom:36px;">
+    <p class="section-desc section-desc--compare">
       TIGUITTO is a solid starting point. p4n4 is where IoT projects go when they need intelligence,
       not just telemetry. The IoT stack is identical — what changes is everything on top of it.
     </p>
@@ -378,31 +395,31 @@
 
     <div class="cli-layout">
       <div class="cli-commands">
-        <div class="cli-cmd-item active" onclick="showCmd(this, 'init')">
+        <div class="cli-cmd-item active" data-cmd="init">
           <div class="cli-cmd-name">p4n4 init</div>
           <div class="cli-cmd-desc">Interactive wizard. Scaffolds a complete project directory with secrets, configs, and base flows.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'template')">
+        <div class="cli-cmd-item" data-cmd="template">
           <div class="cli-cmd-name">p4n4 template</div>
           <div class="cli-cmd-desc">Pull templates from Git or org indexes. Push your own. Upgrade with merge safety.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'up')">
+        <div class="cli-cmd-item" data-cmd="up">
           <div class="cli-cmd-name">p4n4 up --all</div>
           <div class="cli-cmd-desc">Start all stacks in correct dependency order. Polls healthchecks before proceeding.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'status')">
+        <div class="cli-cmd-item" data-cmd="status">
           <div class="cli-cmd-name">p4n4 status</div>
           <div class="cli-cmd-desc">Unified health view across all stacks and services with uptime and port listing.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'ei')">
+        <div class="cli-cmd-item" data-cmd="ei">
           <div class="cli-cmd-name">p4n4 ei</div>
           <div class="cli-cmd-desc">Manage Edge Impulse models. Live inference test, OTA model swap, metadata inspection.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'secret')">
+        <div class="cli-cmd-item" data-cmd="secret">
           <div class="cli-cmd-name">p4n4 secret</div>
           <div class="cli-cmd-desc">Generate and rotate secrets. Never prints values. Tracks which service uses each key.</div>
         </div>
-        <div class="cli-cmd-item" onclick="showCmd(this, 'validate')">
+        <div class="cli-cmd-item" data-cmd="validate">
           <div class="cli-cmd-name">p4n4 validate</div>
           <div class="cli-cmd-desc">Pre-flight checks: Docker version, secrets, YAML validity, port conflicts, EI model presence.</div>
         </div>
@@ -411,22 +428,22 @@
       <div class="cli-preview">
         <div class="cli-preview-bar" id="preview-label">p4n4 init — interactive wizard</div>
         <div class="cli-preview-body" id="preview-body">
-<span style="color:var(--muted)">$ p4n4 init</span>
-<span style="color:var(--muted)">──────────────────────────────────</span>
-<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span>
-<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Stacks ──────────────────────</span>
-<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span>
-<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span>
-<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Secrets ─────────────────────</span>
-<span style="color:var(--accent)">✓ MQTT password generated</span>
-<span style="color:var(--accent)">✓ InfluxDB token generated</span>
-<span style="color:var(--accent)">✓ n8n encryption key generated</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span>
+<span style="color:var(--muted)">$ p4n4 init</span><br>
+<span style="color:var(--muted)">──────────────────────────────────</span><br>
+<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span><br>
+<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span><br>
+<span style="color:var(--muted)"></span><br>
+<span style="color:var(--muted)">─── Stacks ──────────────────────</span><br>
+<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span><br>
+<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span><br>
+<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span><br>
+<span style="color:var(--muted)"></span><br>
+<span style="color:var(--muted)">─── Secrets ─────────────────────</span><br>
+<span style="color:var(--accent)">✓ MQTT password generated</span><br>
+<span style="color:var(--accent)">✓ InfluxDB token generated</span><br>
+<span style="color:var(--accent)">✓ n8n encryption key generated</span><br>
+<span style="color:var(--muted)"></span><br>
+<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span><br>
         </div>
       </div>
     </div>
@@ -460,7 +477,7 @@
         <div class="template-step-num"><span>03</span> — RUN</div>
         <div class="template-step-title">Validate and start</div>
         <div class="template-step-desc">Pre-flight checks, then a single command brings everything up.</div>
-        <div class="template-step-code">p4n4 validate && p4n4 up --all</div>
+        <div class="template-step-code">p4n4 validate &amp;&amp; p4n4 up --all</div>
       </div>
       <div class="template-step">
         <div class="template-step-num"><span>04</span> — SHARE</div>
@@ -470,7 +487,7 @@
       </div>
     </div>
 
-    <div class="section-tag" style="margin-bottom:20px;">Name Resolution</div>
+    <div class="section-tag section-tag--name-res">Name Resolution</div>
     <div class="name-resolution reveal">
       <div class="name-card">
         <div class="name-card-label">Short name (org-scoped)</div>
@@ -479,7 +496,7 @@
       </div>
       <div class="name-card">
         <div class="name-card-label">Full Git URL</div>
-        <div class="name-card-example" style="font-size:12px">github.com/acme/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c581db8198c1d0d8c5d9d4c1d098d3d4d6c1dac7ccf5c3849b879b85">[email&#160;protected]</a></div>
+        <div class="name-card-example name-card-example--sm">github.com/acme/p4n4-template-factory@1.2.0</div>
         <div class="name-card-desc">Pulls directly from any Git host. Supports HTTPS and SSH. Pin to any branch, tag, or commit.</div>
       </div>
       <div class="name-card">
@@ -514,7 +531,7 @@
           <div class="layer-latency fast">&lt;5ms</div>
         </div>
 
-        <div style="height:2px;background:linear-gradient(90deg,rgba(249,115,22,0.22),transparent);margin:0 24px;"></div>
+        <div class="layer-connector"></div>
 
         <div class="layer">
           <div class="layer-icon"><i data-lucide="radio"></i></div>
@@ -525,7 +542,7 @@
           <div class="layer-latency fast">&lt;50ms</div>
         </div>
 
-        <div style="height:2px;background:linear-gradient(90deg,rgba(148,163,184,0.2),transparent);margin:0 24px;"></div>
+        <div class="layer-connector"></div>
 
         <div class="layer">
           <div class="layer-icon"><i data-lucide="database"></i></div>
@@ -536,7 +553,7 @@
           <div class="layer-latency fast">persistent</div>
         </div>
 
-        <div style="height:2px;background:linear-gradient(90deg,rgba(251,146,60,0.2),transparent);margin:0 24px;"></div>
+        <div class="layer-connector"></div>
 
         <div class="layer">
           <div class="layer-icon"><i data-lucide="brain"></i></div>
@@ -547,7 +564,7 @@
           <div class="layer-latency slow">~2–8s</div>
         </div>
 
-        <div style="height:2px;background:linear-gradient(90deg,rgba(248,113,113,0.2),transparent);margin:0 24px;"></div>
+        <div class="layer-connector"></div>
 
         <div class="layer">
           <div class="layer-icon"><i data-lucide="bot"></i></div>
@@ -561,16 +578,16 @@
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">EI inference response</div>
-        <div style="background:var(--bg2);border:1px solid var(--border2);padding:24px;font-family:var(--mono);font-size:12px;line-height:1.9;border-top:2px solid var(--accent);">
-<span style="color:var(--muted)">POST /api/features HTTP/1.1</span>
-<span style="color:var(--muted)">Host: ei-vibration-fault:1337</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">{</span>
-<span style="color:var(--muted)">  "features": [0.12, -0.05, 1.01, ...]</span>
-<span style="color:var(--muted)">}</span>
-<span style="color:var(--muted)">─────────────────────────────────</span>
-<span style="color:var(--text)">{</span>
+        <div class="ei-box-label">EI inference response</div>
+        <div class="ei-box ei-box--accent">
+<span style="color:var(--muted)">POST /api/features HTTP/1.1</span><br>
+<span style="color:var(--muted)">Host: ei-vibration-fault:1337</span><br>
+<span style="color:var(--muted)"></span><br>
+<span style="color:var(--muted)">{</span><br>
+<span style="color:var(--muted)">  "features": [0.12, -0.05, 1.01, ...]</span><br>
+<span style="color:var(--muted)">}</span><br>
+<span style="color:var(--muted)">─────────────────────────────────</span><br>
+<span style="color:var(--text)">{</span><br>
 <span style="color:var(--text)">  "result": {</span>
 <span style="color:var(--text)">    "classification": {</span>
 <span style="color:var(--accent)">      "normal":  0.964,</span>
@@ -581,13 +598,13 @@
 <span style="color:var(--text)">  },</span>
 <span style="color:var(--text)">  "timing": {</span>
 <span style="color:var(--muted)">    "dsp": 2, "classification": 1</span>
-<span style="color:var(--text)">  }</span>
+<span style="color:var(--text)">  }</span><br>
 <span style="color:var(--text)">}</span>
         </div>
 
-        <div style="margin-top:24px;background:var(--bg2);border:1px solid var(--border2);padding:24px;font-family:var(--mono);font-size:12px;line-height:1.9;border-top:2px solid var(--amber);">
-<span style="color:var(--muted)">Node-RED: if fault > 0.7 → Ollama</span>
-<span style="color:var(--muted)">─────────────────────────────────</span>
+        <div class="ei-box ei-box--amber">
+<span style="color:var(--muted)">Node-RED: if fault > 0.7 → Ollama</span><br>
+<span style="color:var(--muted)">─────────────────────────────────</span><br>
 <span style="color:var(--amber)">→ "Motor M003 shows early-stage</span>
 <span style="color:var(--amber)">   bearing fault signature at 3.2 kHz.</span>
 <span style="color:var(--amber)">   Last maintenance: 47 days ago.</span>
@@ -601,7 +618,7 @@
 <!-- INSTALL -->
 <section class="install-section" id="install">
   <div class="section-inner install-inner">
-    <div class="section-tag" style="justify-content:center">Get Started</div>
+    <div class="section-tag section-tag--center">Get Started</div>
     <h2 class="install-title">Up in five minutes.</h2>
     <p class="install-subtitle">Requires Docker, Docker Compose, and Python 3.11+</p>
 
@@ -617,7 +634,7 @@
         <div class="install-step">
           <div class="install-step-num">02</div>
           <div class="install-step-code">
-            <span class="cmd">p4n4 init</span> <span style="color:var(--muted)"># or: p4n4 init --template acme/factory-baseline</span>
+            <span class="cmd">p4n4 init</span> <span class="comment"># or: p4n4 init --template acme/factory-baseline</span>
           </div>
         </div>
         <div class="install-step">
@@ -663,191 +680,9 @@
     <li><a href="#">Discord</a></li>
     <li><a href="#">License</a></li>
   </ul>
-  <div class="footer-copy">MIT License — self-hosted, always.</div>
+  <div class="footer-copy">Apache 2.0 License — self-hosted, always.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // ── CLI preview switcher
-  const previews = {
-    init: {
-      label: 'p4n4 init — interactive wizard',
-      body: `<span style="color:var(--muted)">$ p4n4 init</span>
-<span style="color:var(--muted)">──────────────────────────────────────</span>
-<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span>
-<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Stacks ──────────────────────────</span>
-<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span>
-<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span>
-<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Secrets ─────────────────────────</span>
-<span style="color:var(--accent)">✓ MQTT password generated</span>
-<span style="color:var(--accent)">✓ InfluxDB token generated</span>
-<span style="color:var(--accent)">✓ n8n encryption key generated</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span>`
-    },
-    template: {
-      label: 'p4n4 template pull acme/factory-baseline',
-      body: `<span style="color:var(--muted)">$ p4n4 template pull acme/factory-baseline</span>
-<span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Resolving acme/factory-baseline...</span>
-<span style="color:var(--accent)">  ✓ Found v1.2.0 → github.com/acme/p4n4-template-factory</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--amber)">? site_id [site-1]: </span><span style="color:#fff">plant-a</span>
-<span style="color:var(--amber)">? ollama_model: </span><span style="color:#fff">phi3:mini</span>
-<span style="color:var(--amber)">? EI model path: </span><span style="color:#fff">./models/motor-fault-v3.eim</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  ✓ Rendered 8 template files</span>
-<span style="color:var(--accent)">  ✓ Copied 13 static files</span>
-<span style="color:var(--accent)">  ✓ Secrets generated</span>
-<span style="color:var(--accent)">  ✓ Template locked: acme/factory-baseline@1.2.0</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  ✓ Project ready at ./plant-a</span>`
-    },
-    up: {
-      label: 'p4n4 up --all',
-      body: `<span style="color:var(--muted)">$ p4n4 up --all</span>
-<span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Starting IoT stack...</span>
-<span style="color:var(--accent)">  ✓ mosquitto   healthy</span>
-<span style="color:var(--accent)">  ✓ influxdb    healthy</span>
-<span style="color:var(--accent)">  ✓ node-red    healthy</span>
-<span style="color:var(--accent)">  ✓ grafana     healthy</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  Starting GenAI stack...</span>
-<span style="color:var(--accent)">  ✓ ollama      healthy</span>
-<span style="color:var(--accent)">  ✓ letta       healthy</span>
-<span style="color:var(--accent)">  ✓ n8n         healthy</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  Starting Edge stack...</span>
-<span style="color:var(--accent)">  ✓ ei-vibration-fault  healthy  :1337</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  All stacks healthy. Access points:</span>
-<span style="color:var(--text)">    Node-RED → http://localhost:1880</span>
-<span style="color:var(--text)">    Grafana  → http://localhost:3000</span>
-<span style="color:var(--text)">    n8n      → http://localhost:5678</span>`
-    },
-    status: {
-      label: 'p4n4 status',
-      body: `<span style="color:var(--muted)">$ p4n4 status</span>
-<span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--text)">  p4n4 — plant-a @ factory-floor-1</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  IoT Stack</span>
-<span style="color:var(--accent)">  ✓ mosquitto   2d 14h   :1883 :8883</span>
-<span style="color:var(--accent)">  ✓ node-red    2d 14h   :1880</span>
-<span style="color:var(--accent)">  ✓ influxdb    2d 14h   :8086</span>
-<span style="color:var(--accent)">  ✓ grafana     2d 14h   :3000</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--amber)">  GenAI Stack</span>
-<span style="color:var(--accent)">  ✓ ollama      2d 14h   :11434</span>
-<span style="color:var(--accent)">  ✓ letta       2d 14h   :8283</span>
-<span style="color:var(--accent)">  ✓ n8n         2d 14h   :5678</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  Edge Stack</span>
-<span style="color:var(--accent)">  ✓ ei-vibration-fault  2d 14h  :1337</span>
-<span style="color:var(--muted)">    model: motor-fault-v3.eim</span>`
-    },
-    ei: {
-      label: 'p4n4 ei infer vibration-fault',
-      body: `<span style="color:var(--muted)">$ p4n4 ei infer vibration-fault \</span>
-<span style="color:var(--muted)">    --features "0.12,-0.05,1.01,0.33"</span>
-<span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Inference: ei-vibration-fault @ :1337</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--text)">  Label       Score</span>
-<span style="color:var(--muted)">  ─────────────────</span>
-<span style="color:var(--accent)">  normal      0.964</span>
-<span style="color:var(--red)">  fault       0.031</span>
-<span style="color:var(--muted)">  unknown     0.005</span>
-<span style="color:var(--muted)">  ─────────────────</span>
-<span style="color:var(--amber)">  anomaly    -0.18</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">  Timing: dsp=2ms  classification=1ms</span>`
-    },
-    secret: {
-      label: 'p4n4 secret status',
-      body: `<span style="color:var(--muted)">$ p4n4 secret status</span>
-<span style="color:var(--muted)">──────────────────────────────────────────────</span>
-<span style="color:var(--text)">  Key                        Status   Used By</span>
-<span style="color:var(--muted)">  ──────────────────────────────────────────</span>
-<span style="color:var(--accent)">  MQTT_PASSWORD              ✓ set    mosquitto, node-red</span>
-<span style="color:var(--accent)">  INFLUXDB_ADMIN_TOKEN       ✓ set    influxdb, node-red, n8n</span>
-<span style="color:var(--accent)">  GF_SECURITY_ADMIN_PASSWORD ✓ set    grafana</span>
-<span style="color:var(--accent)">  N8N_ENCRYPTION_KEY         ✓ set    n8n</span>
-<span style="color:var(--accent)">  LETTA_SERVER_PASSWORD      ✓ set    letta</span>
-<span style="color:var(--amber)">  EI_API_KEY                 ─ unset  edge-impulse (optional)</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--text)">  $ p4n4 secret rotate influxdb-token --restart</span>
-<span style="color:var(--accent)">  ✓ INFLUXDB_ADMIN_TOKEN rotated</span>
-<span style="color:var(--accent)">  ✓ influxdb restarted</span>
-<span style="color:var(--accent)">  ✓ node-red restarted</span>`
-    },
-    validate: {
-      label: 'p4n4 validate',
-      body: `<span style="color:var(--muted)">$ p4n4 validate</span>
-<span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--accent)">  ✓ docker 27.3.1</span>
-<span style="color:var(--accent)">  ✓ docker compose v2.29.1</span>
-<span style="color:var(--accent)">  ✓ .env present and readable</span>
-<span style="color:var(--accent)">  ✓ All required secrets set</span>
-<span style="color:var(--accent)">  ✓ docker-compose.iot.yml  — valid</span>
-<span style="color:var(--accent)">  ✓ docker-compose.ai.yml   — valid</span>
-<span style="color:var(--accent)">  ✓ docker-compose.edge.yml — valid</span>
-<span style="color:var(--accent)">  ✓ EI models present:</span>
-<span style="color:var(--muted)">      motor-fault-v3.eim  (1.2 MB, aarch64)</span>
-<span style="color:var(--accent)">  ✓ Port conflicts: none</span>
-<span style="color:var(--accent)">  ✓ Node-RED flows.json — valid JSON</span>
-<span style="color:var(--accent)">  ✓ Mosquitto passwd — non-empty</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  All checks passed. Ready: p4n4 up --all</span>`
-    }
-  };
-
-  // ── Lucide icons
-  lucide.createIcons();
-
-  // ── Copy install command
-  function copyInstall() {
-    navigator.clipboard.writeText('pip install p4n4').then(() => {
-      const btn = document.getElementById('copy-btn');
-      const original = btn.textContent;
-      btn.textContent = '✓ copied!';
-      btn.style.background = 'var(--accent2)';
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-      }, 2000);
-    });
-  }
-
-  function showCmd(el, key) {
-    document.querySelectorAll('.cli-cmd-item').forEach(i => i.classList.remove('active'));
-    el.classList.add('active');
-    const p = previews[key];
-    document.getElementById('preview-label').textContent = p.label;
-    const body = document.getElementById('preview-body');
-    body.style.opacity = '0';
-    setTimeout(() => {
-      body.innerHTML = p.body;
-      body.style.opacity = '1';
-      body.style.transition = 'opacity 0.2s';
-    }, 150);
-  }
-</script>
+<script defer src="./public/main.js"></script>
 </body>
 </html>
