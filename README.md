@@ -3,7 +3,7 @@
 Official landing page for **p4n4** — an open-source Docker Compose platform that wires together IoT, GenAI, and Edge ML into a single self-hosted stack.
 
 ![P4N4](https://img.shields.io/badge/p4n4-IoT%20%2B%20GenAI%20%2B%20Edge%20ML-f97316?style=for-the-badge)
-![License](https://img.shields.io/badge/license-Apache%202.0-00a8ff?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-00a8ff?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-active-f97316?style=for-the-badge)
 
 ## Overview
@@ -53,7 +53,7 @@ The site covers:
 p4n4.com/
 ├── index.html        # Main landing page
 ├── README.md         # This file
-├── LICENSE           # Apache 2.0 License
+├── LICENSE           # MIT License
 └── public/
     ├── styles.css    # All styles and responsive breakpoints
     └── main.js       # Scroll reveal, CLI preview switcher, mobile nav, copy button
@@ -77,4 +77,4 @@ p4n4.com/
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
