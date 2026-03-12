@@ -61,138 +61,123 @@ document.addEventListener('click', (e) => {
 const previews = {
   init: {
     label: 'p4n4 init — interactive wizard',
-    body: `<span style="color:var(--muted)">$ p4n4 init</span>
+    body: `<span style="color:var(--muted)">$ p4n4 init my-factory-stack</span>
 <span style="color:var(--muted)">──────────────────────────────────────</span>
-<span style="color:var(--amber)">? Project name: </span><span style="color:#fff">my-factory-stack</span>
-<span style="color:var(--amber)">? Site ID: </span><span style="color:#fff">factory-floor-1</span>
+<span style="color:var(--muted)">  Press Enter to accept defaults.</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Stacks ──────────────────────────</span>
-<span style="color:var(--amber)">? IoT stack?   </span><span style="color:var(--accent)">Y</span>
-<span style="color:var(--amber)">? GenAI stack? </span><span style="color:var(--accent)">y</span>
-<span style="color:var(--amber)">? Edge stack?  </span><span style="color:var(--accent)">y</span>
+<span style="color:var(--amber)">? InfluxDB organisation: </span><span style="color:#fff">ming</span>
+<span style="color:var(--amber)">? Timezone: </span><span style="color:#fff">UTC</span>
+<span style="color:var(--amber)">? InfluxDB admin password: </span><span style="color:var(--muted)">(auto-generated)</span>
+<span style="color:var(--amber)">? InfluxDB API token: </span><span style="color:var(--muted)">(auto-generated)</span>
+<span style="color:var(--amber)">? Grafana admin password: </span><span style="color:var(--muted)">(auto-generated)</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">─── Secrets ─────────────────────────</span>
-<span style="color:var(--accent)">✓ MQTT password generated</span>
-<span style="color:var(--accent)">✓ InfluxDB token generated</span>
-<span style="color:var(--accent)">✓ n8n encryption key generated</span>
+<span style="color:var(--muted)">─── Scaffolding ─────────────────────</span>
+<span style="color:var(--accent)">  ✓ docker-compose.yml</span>
+<span style="color:var(--accent)">  ✓ config/mosquitto/mosquitto.conf</span>
+<span style="color:var(--accent)">  ✓ config/node-red/flows.json</span>
+<span style="color:var(--accent)">  ✓ config/grafana/provisioning/</span>
+<span style="color:var(--accent)">  ✓ .env  (secrets generated)</span>
+<span style="color:var(--accent)">  ✓ .p4n4.json</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">✓ Scaffolded at ./my-factory-stack</span>`
+<span style="color:var(--accent)">✓ Project created at ./my-factory-stack</span>
+<span style="color:var(--text)">  cd my-factory-stack &amp;&amp; p4n4 up</span>`
   },
   template: {
-    label: 'p4n4 template pull acme/factory-baseline',
-    body: `<span style="color:var(--muted)">$ p4n4 template pull acme/factory-baseline</span>
+    label: 'p4n4 template apply factory-baseline',
+    body: `<span style="color:var(--muted)">$ p4n4 template search</span>
 <span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Resolving acme/factory-baseline...</span>
-<span style="color:var(--accent)">  ✓ Found v1.2.0 → github.com/acme/p4n4-template-factory</span>
+<span style="color:var(--text)">  factory-baseline   iot+ai+edge  Manufacturing vibration monitoring</span>
+<span style="color:var(--text)">  iot-minimal        iot          Minimal sensor monitoring stack</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--amber)">? site_id [site-1]: </span><span style="color:#fff">plant-a</span>
-<span style="color:var(--amber)">? ollama_model: </span><span style="color:#fff">phi3:mini</span>
-<span style="color:var(--amber)">? EI model path: </span><span style="color:#fff">./models/motor-fault-v3.eim</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  ✓ Rendered 8 template files</span>
-<span style="color:var(--accent)">  ✓ Copied 13 static files</span>
+<span style="color:var(--muted)">$ p4n4 template apply factory-baseline</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--accent)">  ✓ Scaffolded project from template</span>
 <span style="color:var(--accent)">  ✓ Secrets generated</span>
-<span style="color:var(--accent)">  ✓ Template locked: acme/factory-baseline@1.2.0</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  ✓ Project ready at ./plant-a</span>`
+<span style="color:var(--muted)">  Next: cd factory-baseline &amp;&amp; p4n4 up</span>`
   },
   up: {
-    label: 'p4n4 up --all',
-    body: `<span style="color:var(--muted)">$ p4n4 up --all</span>
+    label: 'p4n4 up / --ai / --edge',
+    body: `<span style="color:var(--muted)">$ p4n4 up</span>
 <span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Starting IoT stack...</span>
-<span style="color:var(--accent)">  ✓ mosquitto   healthy</span>
-<span style="color:var(--accent)">  ✓ influxdb    healthy</span>
-<span style="color:var(--accent)">  ✓ node-red    healthy</span>
-<span style="color:var(--accent)">  ✓ grafana     healthy</span>
+<span style="color:var(--accent)">  ✓ mosquitto   healthy  :1883</span>
+<span style="color:var(--accent)">  ✓ influxdb    healthy  :8086</span>
+<span style="color:var(--accent)">  ✓ node-red    healthy  :1880</span>
+<span style="color:var(--accent)">  ✓ grafana     healthy  :3000</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  Starting GenAI stack...</span>
-<span style="color:var(--accent)">  ✓ ollama      healthy</span>
-<span style="color:var(--accent)">  ✓ letta       healthy</span>
-<span style="color:var(--accent)">  ✓ n8n         healthy</span>
+<span style="color:var(--muted)">$ p4n4 up --ai</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--accent)">  ✓ ollama      healthy  :11434</span>
+<span style="color:var(--accent)">  ✓ letta       healthy  :8283</span>
+<span style="color:var(--accent)">  ✓ n8n         healthy  :5678</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  Starting Edge stack...</span>
-<span style="color:var(--accent)">  ✓ ei-vibration-fault  healthy  :1337</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  All stacks healthy. Access points:</span>
-<span style="color:var(--text)">    Node-RED → http://localhost:1880</span>
-<span style="color:var(--text)">    Grafana  → http://localhost:3000</span>
-<span style="color:var(--text)">    n8n      → http://localhost:5678</span>`
+<span style="color:var(--muted)">$ p4n4 up --edge</span>
+<span style="color:var(--muted)">──────────────────────────────────────────</span>
+<span style="color:var(--accent)">  ✓ ei-runner   healthy  :8080</span>`
   },
   status: {
     label: 'p4n4 status',
     body: `<span style="color:var(--muted)">$ p4n4 status</span>
 <span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--text)">  p4n4 — plant-a @ factory-floor-1</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--blue)">  IoT Stack</span>
-<span style="color:var(--accent)">  ✓ mosquitto   2d 14h   :1883 :8883</span>
-<span style="color:var(--accent)">  ✓ node-red    2d 14h   :1880</span>
-<span style="color:var(--accent)">  ✓ influxdb    2d 14h   :8086</span>
-<span style="color:var(--accent)">  ✓ grafana     2d 14h   :3000</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--amber)">  GenAI Stack</span>
-<span style="color:var(--accent)">  ✓ ollama      2d 14h   :11434</span>
-<span style="color:var(--accent)">  ✓ letta       2d 14h   :8283</span>
-<span style="color:var(--accent)">  ✓ n8n         2d 14h   :5678</span>
-<span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  Edge Stack</span>
-<span style="color:var(--accent)">  ✓ ei-vibration-fault  2d 14h  :1337</span>
-<span style="color:var(--muted)">    model: motor-fault-v3.eim</span>`
+<span style="color:var(--text)">       Stack status — my-factory-stack</span>
+<span style="color:var(--muted)">  ┏━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━┓</span>
+<span style="color:var(--muted)">  ┃ Service  ┃ Status  ┃ Health  ┃ Ports       ┃</span>
+<span style="color:var(--muted)">  ┡━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━┩</span>
+<span style="color:var(--accent)">  │ mqtt     │ running │ healthy │ 1883/tcp    │</span>
+<span style="color:var(--accent)">  │ influxdb │ running │ healthy │ 8086/tcp    │</span>
+<span style="color:var(--accent)">  │ node-red │ running │ healthy │ 1880/tcp    │</span>
+<span style="color:var(--accent)">  │ grafana  │ running │ healthy │ 3000/tcp    │</span>
+<span style="color:var(--muted)">  └──────────┴─────────┴─────────┴─────────────┘</span>`
   },
   ei: {
-    label: 'p4n4 ei infer vibration-fault',
-    body: `<span style="color:var(--muted)">$ p4n4 ei infer vibration-fault \</span>
-<span style="color:var(--muted)">    --features "0.12,-0.05,1.01,0.33"</span>
+    label: 'p4n4 ei deploy / run',
+    body: `<span style="color:var(--muted)">$ p4n4 ei deploy</span>
 <span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--blue)">  Inference: ei-vibration-fault @ :1337</span>
+<span style="color:var(--amber)">  p4n4 ei deploy — not yet implemented</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--text)">  Label       Score</span>
-<span style="color:var(--muted)">  ─────────────────</span>
-<span style="color:var(--accent)">  normal      0.964</span>
-<span style="color:var(--red)">  fault       0.031</span>
-<span style="color:var(--muted)">  unknown     0.005</span>
-<span style="color:var(--muted)">  ─────────────────</span>
-<span style="color:var(--amber)">  anomaly    -0.18</span>
+<span style="color:var(--muted)">  Use p4n4-edge directly:</span>
+<span style="color:var(--text)">  make deploy-model MODEL=~/motor-fault.eim</span>
+<span style="color:var(--text)">  make up</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--muted)">  Timing: dsp=2ms  classification=1ms</span>`
+<span style="color:var(--muted)">  The runner subscribes to MQTT:</span>
+<span style="color:var(--text)">  sensors/raw      ← feature vectors in</span>
+<span style="color:var(--text)">  inference/results → label + confidence out</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--muted)">  Health endpoint:</span>
+<span style="color:var(--accent)">  curl http://localhost:8080/health</span>`
   },
   secret: {
-    label: 'p4n4 secret status',
-    body: `<span style="color:var(--muted)">$ p4n4 secret status</span>
+    label: 'p4n4 secret',
+    body: `<span style="color:var(--muted)">$ p4n4 secret</span>
 <span style="color:var(--muted)">──────────────────────────────────────────────</span>
-<span style="color:var(--text)">  Key                        Status   Used By</span>
-<span style="color:var(--muted)">  ──────────────────────────────────────────</span>
-<span style="color:var(--accent)">  MQTT_PASSWORD              ✓ set    mosquitto, node-red</span>
-<span style="color:var(--accent)">  INFLUXDB_ADMIN_TOKEN       ✓ set    influxdb, node-red, n8n</span>
-<span style="color:var(--accent)">  GF_SECURITY_ADMIN_PASSWORD ✓ set    grafana</span>
-<span style="color:var(--accent)">  N8N_ENCRYPTION_KEY         ✓ set    n8n</span>
-<span style="color:var(--accent)">  LETTA_SERVER_PASSWORD      ✓ set    letta</span>
-<span style="color:var(--amber)">  EI_API_KEY                 ─ unset  edge-impulse (optional)</span>
+<span style="color:var(--text)">         Secrets to rotate</span>
+<span style="color:var(--muted)">  ┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓</span>
+<span style="color:var(--muted)">  ┃ Key                     ┃ New value            ┃</span>
+<span style="color:var(--muted)">  ┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩</span>
+<span style="color:var(--text)">  │ INFLUXDB_PASSWORD       │ 3f8a2c...            │</span>
+<span style="color:var(--text)">  │ INFLUXDB_TOKEN          │ 9b1d4e...            │</span>
+<span style="color:var(--text)">  │ GRAFANA_PASSWORD        │ a72f1b...            │</span>
+<span style="color:var(--muted)">  └─────────────────────────┴──────────────────────┘</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--text)">  $ p4n4 secret rotate influxdb-token --restart</span>
-<span style="color:var(--accent)">  ✓ INFLUXDB_ADMIN_TOKEN rotated</span>
-<span style="color:var(--accent)">  ✓ influxdb restarted</span>
-<span style="color:var(--accent)">  ✓ node-red restarted</span>`
+<span style="color:var(--amber)">  Rotate these secrets in .env? [Y/n]</span>
+<span style="color:var(--muted)"></span>
+<span style="color:var(--accent)">  ✓ Secrets rotated in .env</span>
+<span style="color:var(--text)">  Remember: p4n4 down &amp;&amp; p4n4 up to apply.</span>`
   },
   validate: {
     label: 'p4n4 validate',
     body: `<span style="color:var(--muted)">$ p4n4 validate</span>
 <span style="color:var(--muted)">──────────────────────────────────────────</span>
-<span style="color:var(--accent)">  ✓ docker 27.3.1</span>
-<span style="color:var(--accent)">  ✓ docker compose v2.29.1</span>
+<span style="color:var(--accent)">  ✓ .p4n4.json present (schema_version: 1)</span>
 <span style="color:var(--accent)">  ✓ .env present and readable</span>
-<span style="color:var(--accent)">  ✓ All required secrets set</span>
-<span style="color:var(--accent)">  ✓ docker-compose.iot.yml  — valid</span>
-<span style="color:var(--accent)">  ✓ docker-compose.ai.yml   — valid</span>
-<span style="color:var(--accent)">  ✓ docker-compose.edge.yml — valid</span>
-<span style="color:var(--accent)">  ✓ EI models present:</span>
-<span style="color:var(--muted)">      motor-fault-v3.eim  (1.2 MB, aarch64)</span>
-<span style="color:var(--accent)">  ✓ Port conflicts: none</span>
-<span style="color:var(--accent)">  ✓ Node-RED flows.json — valid JSON</span>
-<span style="color:var(--accent)">  ✓ Mosquitto passwd — non-empty</span>
+<span style="color:var(--accent)">  ✓ INFLUXDB_TOKEN set</span>
+<span style="color:var(--accent)">  ✓ GRAFANA_PASSWORD set</span>
+<span style="color:var(--accent)">  ✓ docker-compose.yml — valid</span>
+<span style="color:var(--accent)">  ✓ config/mosquitto/mosquitto.conf — present</span>
+<span style="color:var(--accent)">  ✓ config/node-red/flows.json — valid JSON</span>
+<span style="color:var(--accent)">  ✓ config/grafana/provisioning/ — present</span>
 <span style="color:var(--muted)"></span>
-<span style="color:var(--accent)">  All checks passed. Ready: p4n4 up --all</span>`
+<span style="color:var(--accent)">  All checks passed. Ready: p4n4 up</span>`
   }
 };
 

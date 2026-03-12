@@ -50,7 +50,7 @@
     <div class="hero-left">
       <div class="hero-badge">v0.2 — open source platform</div>
       <h1 class="hero-title">
-        IoT<br>
+        IoT +<br>
         Gen<span class="accent">AI</span><br>
         Edge<span class="accent">AI</span>
       </h1>
@@ -77,25 +77,24 @@
         <span class="terminal-title">bash — p4n4 init</span>
       </div>
       <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 init --template acme/factory-baseline</span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 init my-factory-stack</span></div>
         <div class="t-line"><span class="t-comment"></span></div>
-        <div class="t-line"><span class="t-info">  Resolving acme/factory-baseline...</span></div>
-        <div class="t-line"><span class="t-ok">  ✓ Found @ v1.2.0 → github.com/acme/p4n4-template-factory</span></div>
-        <div class="t-line"><span class="t-comment"></span></div>
-        <div class="t-line"><span class="t-comment">  ─── Variables ──────────────────────────────</span></div>
-        <div class="t-line"><span class="t-warn">  ? Site ID:</span><span class="t-cmd"> plant-a</span></div>
-        <div class="t-line"><span class="t-warn">  ? Ollama model:</span><span class="t-cmd"> phi3:mini</span></div>
-        <div class="t-line"><span class="t-warn">  ? EI model path:</span><span class="t-cmd"> ./models/motor-fault-v3.eim</span></div>
+        <div class="t-line"><span class="t-comment">  ─── Configuration ──────────────────────────</span></div>
+        <div class="t-line"><span class="t-warn">  ? InfluxDB organisation:</span><span class="t-cmd"> ming</span></div>
+        <div class="t-line"><span class="t-warn">  ? Timezone:</span><span class="t-cmd"> UTC</span></div>
+        <div class="t-line"><span class="t-warn">  ? InfluxDB admin password:</span><span class="t-cmd"> (auto-generated)</span></div>
+        <div class="t-line"><span class="t-warn">  ? Grafana admin password:</span><span class="t-cmd"> (auto-generated)</span></div>
         <div class="t-line"><span class="t-comment"></span></div>
         <div class="t-line"><span class="t-comment">  ─── Generating secrets ─────────────────────</span></div>
-        <div class="t-line"><span class="t-ok">  ✓ MQTT password  ✓ InfluxDB token  ✓ n8n key</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ InfluxDB token  ✓ Grafana password</span></div>
         <div class="t-line"><span class="t-comment"></span></div>
-        <div class="t-line"><span class="t-ok">  ✓ Project scaffolded at ./plant-a</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Project scaffolded at ./my-factory-stack</span></div>
         <div class="t-line"><span class="t-comment"></span></div>
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 up --all</span></div>
-        <div class="t-line"><span class="t-ok">  ✓ IoT stack   healthy (mosquitto, node-red, influxdb, grafana)</span></div>
-        <div class="t-line"><span class="t-ok">  ✓ GenAI stack healthy (ollama, letta, n8n)</span></div>
-        <div class="t-line"><span class="t-ok">  ✓ Edge stack  healthy (ei-motor-fault :1337)</span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> p4n4 up</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ mosquitto  healthy  :1883</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ influxdb   healthy  :8086</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ node-red   healthy  :1880</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ grafana    healthy  :3000</span></div>
         <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> <span class="cursor"></span></span></div>
       </div>
     </div>
@@ -183,18 +182,8 @@
       <div class="arch-stack edge" data-label="p4n4-edge">
         <div class="arch-service">
           <div class="arch-service-dot dot-orange"></div>
-          EI Inference
-          <span class="arch-service-port">:1337</span>
-        </div>
-        <div class="arch-service">
-          <div class="arch-service-dot dot-orange"></div>
-          EI Inference
-          <span class="arch-service-port">:1338</span>
-        </div>
-        <div class="arch-service arch-service--dim">
-          <div class="arch-service-dot dot-dim"></div>
-          + more models
-          <span class="arch-service-port">…</span>
+          ei-runner
+          <span class="arch-service-port">:8080</span>
         </div>
       </div>
 
@@ -402,8 +391,8 @@
           <div class="cli-cmd-desc">Pull templates from Git or org indexes. Push your own. Upgrade with merge safety.</div>
         </div>
         <div class="cli-cmd-item" data-cmd="up">
-          <div class="cli-cmd-name">p4n4 up --all</div>
-          <div class="cli-cmd-desc">Start all stacks in correct dependency order. Polls healthchecks before proceeding.</div>
+          <div class="cli-cmd-name">p4n4 up</div>
+          <div class="cli-cmd-desc">Start the IoT stack. Add <code style="font-family:var(--mono);font-size:11px">--ai</code> or <code style="font-family:var(--mono);font-size:11px">--edge</code> to bring up additional stacks.</div>
         </div>
         <div class="cli-cmd-item" data-cmd="status">
           <div class="cli-cmd-name">p4n4 status</div>
@@ -411,11 +400,11 @@
         </div>
         <div class="cli-cmd-item" data-cmd="ei">
           <div class="cli-cmd-name">p4n4 ei</div>
-          <div class="cli-cmd-desc">Manage Edge Impulse models. Live inference test, OTA model swap, metadata inspection.</div>
+          <div class="cli-cmd-desc">Deploy an Edge Impulse model and run inference. Publishes results to MQTT.</div>
         </div>
         <div class="cli-cmd-item" data-cmd="secret">
           <div class="cli-cmd-name">p4n4 secret</div>
-          <div class="cli-cmd-desc">Generate and rotate secrets. Never prints values. Tracks which service uses each key.</div>
+          <div class="cli-cmd-desc">Rotate secrets in <code style="font-family:var(--mono);font-size:11px">.env</code> with new random values. Shows a confirmation table before writing.</div>
         </div>
         <div class="cli-cmd-item" data-cmd="validate">
           <div class="cli-cmd-name">p4n4 validate</div>
@@ -466,16 +455,16 @@
         <div class="template-step-code">p4n4 template search manufacturing</div>
       </div>
       <div class="template-step">
-        <div class="template-step-num"><span>02</span> — PULL</div>
+        <div class="template-step-num"><span>02</span> — APPLY</div>
         <div class="template-step-title">Apply to your project</div>
-        <div class="template-step-desc">Variables are rendered, secrets generated, EI models wired up.</div>
-        <div class="template-step-code">p4n4 template pull acme/factory-baseline</div>
+        <div class="template-step-desc">Scaffolds a project directory with pre-configured stacks, flows, and dashboards.</div>
+        <div class="template-step-code">p4n4 template apply factory-baseline</div>
       </div>
       <div class="template-step">
         <div class="template-step-num"><span>03</span> — RUN</div>
         <div class="template-step-title">Validate and start</div>
-        <div class="template-step-desc">Pre-flight checks, then a single command brings everything up.</div>
-        <div class="template-step-code">p4n4 validate &amp;&amp; p4n4 up --all</div>
+        <div class="template-step-desc">Pre-flight checks, then bring up the stack.</div>
+        <div class="template-step-code">p4n4 validate &amp;&amp; p4n4 up</div>
       </div>
       <div class="template-step">
         <div class="template-step-num"><span>04</span> — SHARE</div>
@@ -576,27 +565,21 @@
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div class="ei-box-label">EI inference response</div>
+        <div class="ei-box-label">MQTT inference flow</div>
         <div class="ei-box ei-box--accent">
-<span style="color:var(--muted)">POST /api/features HTTP/1.1</span><br>
-<span style="color:var(--muted)">Host: ei-vibration-fault:1337</span><br>
-<span style="color:var(--muted)"></span><br>
-<span style="color:var(--muted)">{</span><br>
-<span style="color:var(--muted)">  "features": [0.12, -0.05, 1.01, ...]</span><br>
-<span style="color:var(--muted)">}</span><br>
-<span style="color:var(--muted)">─────────────────────────────────</span><br>
+<span style="color:var(--muted)"># Publish sensor data → sensors/raw</span><br>
 <span style="color:var(--text)">{</span><br>
-<span style="color:var(--text)">  "result": {</span>
-<span style="color:var(--text)">    "classification": {</span>
-<span style="color:var(--accent)">      "normal":  0.964,</span>
-<span style="color:var(--red)">      "fault":   0.031,</span>
-<span style="color:var(--muted)">      "unknown": 0.005</span>
-<span style="color:var(--text)">    },</span>
-<span style="color:var(--amber)">    "anomaly": -0.18</span>
-<span style="color:var(--text)">  },</span>
-<span style="color:var(--text)">  "timing": {</span>
-<span style="color:var(--muted)">    "dsp": 2, "classification": 1</span>
-<span style="color:var(--text)">  }</span><br>
+<span style="color:var(--muted)">  "device": "motor-m003",</span><br>
+<span style="color:var(--muted)">  "values": [0.12, -0.05, 1.01, 0.33]</span><br>
+<span style="color:var(--text)">}</span><br>
+<span style="color:var(--muted)">─────────────────────────────────</span><br>
+<span style="color:var(--muted)"># Result on → inference/results</span><br>
+<span style="color:var(--text)">{</span><br>
+<span style="color:var(--accent)">  "label":         "normal",</span><br>
+<span style="color:var(--accent)">  "confidence":    0.964,</span><br>
+<span style="color:var(--amber)">  "anomaly_score": 0.18,</span><br>
+<span style="color:var(--muted)">  "latency_ms":    4.2,</span><br>
+<span style="color:var(--muted)">  "mode":          "model"</span><br>
 <span style="color:var(--text)">}</span>
         </div>
 
@@ -632,7 +615,7 @@
         <div class="install-step">
           <div class="install-step-num">02</div>
           <div class="install-step-code">
-            <span class="cmd">p4n4 init</span> <span class="comment"># or: p4n4 init --template acme/factory-baseline</span>
+            <span class="cmd">p4n4 init</span> <span class="arg">my-project</span> <span class="comment"># interactive wizard — prompts for org, timezone, secrets</span>
           </div>
         </div>
         <div class="install-step">
@@ -651,19 +634,19 @@
         <div class="install-step">
           <div class="install-step-num">05</div>
           <div class="install-step-code">
-            <span class="cmd">p4n4 up --all</span>
-            <span class="comment"># node-red :1880  grafana :3000  n8n :5678</span>
+            <span class="cmd">p4n4 up</span>
+            <span class="comment"># node-red :1880  grafana :3000  influxdb :8086</span>
           </div>
         </div>
       </div>
     </div>
 
     <div class="install-links">
-      <a href="#" class="install-link"><i data-lucide="book-open"></i> Documentation</a>
-      <a href="#" class="install-link"><i data-lucide="github"></i> GitHub</a>
-      <a href="#" class="install-link"><i data-lucide="package"></i> PyPI</a>
+      <a href="https://raisga.github.io/p4n4-docs" class="install-link"><i data-lucide="book-open"></i> Documentation</a>
+      <a href="https://github.com/raisga/p4n4" class="install-link"><i data-lucide="github"></i> GitHub</a>
+      <a href="https://pypi.org/project/p4n4/" class="install-link"><i data-lucide="package"></i> PyPI</a>
       <a href="#" class="install-link"><i data-lucide="message-circle"></i> Discord</a>
-      <a href="#" class="install-link"><i data-lucide="tag"></i> Template Registry</a>
+      <a href="https://github.com/raisga/p4n4-templates" class="install-link"><i data-lucide="tag"></i> Template Registry</a>
     </div>
   </div>
 </section>
@@ -672,11 +655,11 @@
 <footer>
   <div class="footer-logo">p4n4<span>.com</span></div>
   <ul class="footer-links">
-    <li><a href="#">Docs</a></li>
-    <li><a href="#">GitHub</a></li>
-    <li><a href="#">Templates</a></li>
+    <li><a href="https://raisga.github.io/p4n4-docs">Docs</a></li>
+    <li><a href="https://github.com/raisga/p4n4">GitHub</a></li>
+    <li><a href="https://github.com/raisga/p4n4-templates">Templates</a></li>
     <li><a href="#">Discord</a></li>
-    <li><a href="#">License</a></li>
+    <li><a href="https://github.com/raisga/p4n4/blob/main/LICENSE">License</a></li>
   </ul>
   <div class="footer-copy">MIT License — self-hosted, always.</div>
 </footer>
